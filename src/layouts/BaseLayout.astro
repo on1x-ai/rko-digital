@@ -1,5 +1,218 @@
 ---
 import "../styles/global.css";
+
+const {
+  title = 'RKO.digital — расчётные счета для digital‑предпринимателей',
+  description = 'Подбор банков для IT‑специалистов, фрилансеров, стартапов, онлайн‑школ и e‑commerce. Эквайринг, валютный контроль, легальный приём платежей.',
+  canonical = '',
+  image = '/og-image.png',
+  pubDate,
+  author,
+  type = 'website',
+} = Astro.props;
+
+const siteUrl = 'https://rko.digital';
+const fullCanonical = canonical ? `${siteUrl}${canonical}` : siteUrl;
+const fullImage = image.startsWith('http') ? image : `${siteUrl}${image}`;
+const currentYear = new Date().getFullYear();
 ---
 
-<slot />
+<!DOCTYPE html>
+<html lang="ru" prefix="og: https://ogp.me/ns#">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#2563eb" />
+
+  <!-- Primary Meta Tags -->
+  <title>{title}</title>
+  <meta name="title" content={title} />
+  <meta name="description" content={description} />
+  <meta name="keywords" content="РКО, расчётный счёт, digital, IT, фриланс, стартап, эквайринг, валютный контроль, онлайн‑школа, e‑commerce" />
+  <meta name="author" content="RKO.digital" />
+  <link rel="canonical" href={fullCanonical} />
+
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content={type} />
+  <meta property="og:url" content={fullCanonical} />
+  <meta property="og:title" content={title} />
+  <meta property="og:description" content={description} />
+  <meta property="og:image" content={fullImage} />
+  <meta property="og:locale" content="ru_RU" />
+  <meta property="og:site_name" content="RKO.digital" />
+
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image" />
+  <meta property="twitter:url" content={fullCanonical} />
+  <meta property="twitter:title" content={title} />
+  <meta property="twitter:description" content={description} />
+  <meta property="twitter:image" content={fullImage} />
+
+  <!-- Article-specific meta -->
+  {
+    type === 'article' && pubDate && (
+      <meta property="article:published_time" content={pubDate.toISOString()} />
+    )
+  }
+  {
+    type === 'article' && author && (
+      <meta property="article:author" content={author} />
+    )
+  }
+
+  <!-- JSON-LD structured data -->
+  <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://rko.digital/#organization",
+          "name": "RKO.digital",
+          "url": "https://rko.digital",
+          "logo": "https://rko.digital/logo.svg",
+          "description": "Сервис подбора расчётных счетов для digital‑предпринимателей",
+          "sameAs": []
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://rko.digital/#website",
+          "url": "https://rko.digital",
+          "name": "RKO.digital",
+          "description": "{description}",
+          "publisher": {
+            "@id": "https://rko.digital/#organization"
+          },
+          "inLanguage": "ru-RU"
+        },
+        {
+          "@type": "BreadcrumbList",
+          "@id": "https://rko.digital/#breadcrumb",
+          "itemListElement": [
+            {
+              "@type": "ListItem",
+              "position": 1,
+              "name": "Главная",
+              "item": "https://rko.digital"
+            }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Какой банк лучше для IT‑фрилансера?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Для IT‑фрилансеров, работающих с зарубежными заказчиками, рекомендуем Т‑Банк (для начинающих) или Альфа‑Банк (для опытных). Ключевые критерии: низкая комиссия за SWIFT, упрощённый валютный контроль, интеграция с фриланс‑платформами."
+              }
+            },
+            {
+              "@type": "Question",
+              "name": "Как выбрать ОКВЭД для льготной УСН 3%?",
+              "acceptedAnswer": {
+                "@type": "Answer",
+                "text": "Для IT‑деятельности подходит код 62.01 «Разработка программного обеспечения». Он даёт право на льготную ставку УСН 3% (вместо стандартных 6%)."
+              }
+            }
+          ]
+        }
+      ]
+    }
+  </script>
+  {
+    type === 'article' && pubDate && author && (
+      <script type="application/ld+json">
+        {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          "headline": "{title}",
+          "description": "{description}",
+          "image": "{fullImage}",
+          "datePublished": "{pubDate.toISOString()}",
+          "dateModified": "{pubDate.toISOString()}",
+          "author": {
+            "@type": "Person",
+            "name": "{author}"
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "RKO.digital",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://rko.digital/logo.svg"
+            }
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": "{fullCanonical}"
+          }
+        }
+      </script>
+    )
+  }
+
+  <!-- Favicon -->
+  <link rel="icon" href="/favicon.ico" sizes="any" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+
+  <!-- Analytics placeholders (env variables) -->
+  {
+    import.meta.env.PUBLIC_YANDEX_METRIKA_ID && (
+      <>
+        <script type="text/javascript" dangerouslySetInnerHTML={`
+          (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+          m[i].l=1*new Date();k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+          (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+          ym(${import.meta.env.PUBLIC_YANDEX_METRIKA_ID}, "init", {
+            clickmap:true,
+            trackLinks:true,
+            accurateTrackBounce:true,
+            webvisor:true
+          });
+        `} />
+        <noscript><div><img src={`https://mc.yandex.ru/watch/${import.meta.env.PUBLIC_YANDEX_METRIKA_ID}`} style={{position:'absolute', left:'-9999px'}} alt="" /></div></noscript>
+      </>
+    )
+  }
+  {
+    import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID && (
+      <>
+        <script async src={`https://www.googletagmanager.com/gtag/js?id=${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}`} />
+        <script type="text/javascript" dangerouslySetInnerHTML={`
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', '${import.meta.env.PUBLIC_GOOGLE_ANALYTICS_ID}');
+        `} />
+      </>
+    )
+  }
+</head>
+<body class="min-h-screen bg-white text-gray-900 antialiased">
+  <slot />
+
+  <footer class="mt-24 border-t border-gray-200">
+    <div class="container mx-auto px-4 py-8">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6">
+        <div class="text-gray-600">
+          © {currentYear} RKO.digital. Все права защищены.
+        </div>
+        <nav class="flex flex-wrap gap-6">
+          <a href="/blog/" class="text-gray-600 hover:text-blue-600 transition-colors">
+            Блог
+          </a>
+          <a href="/policy/" class="text-gray-600 hover:text-blue-600 transition-colors">
+            Политика конфиденциальности
+          </a>
+          <a href="/#consult" class="text-blue-600 hover:text-blue-800 font-medium">
+            Консультация
+          </a>
+        </nav>
+      </div>
+    </div>
+  </footer>
+</body>
+</html>

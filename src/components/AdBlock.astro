@@ -1,0 +1,24 @@
+---
+export interface Props {
+  type: 'banner' | 'inline' | 'sidebar';
+}
+
+const { type } = Astro.props;
+
+const dimensions = {
+  banner: '970x90',
+  inline: '728x90',
+  sidebar: '300x250'
+};
+
+const classes = {
+  banner: 'w-full h-24',
+  inline: 'w-full h-24 max-w-3xl mx-auto',
+  sidebar: 'w-48 h-60'
+};
+---
+
+<div class={`${classes[type]} bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-card flex items-center justify-center text-[var(--text-muted)]`}>
+  <!-- AD BLOCK: {type} {dimensions[type]} -->
+  <span class="text-sm">[Рекламный блок {type} {dimensions[type]}]</span>
+</div>

@@ -1,0 +1,43 @@
+---
+export interface Props {
+  articles: Array<{
+    slug: string;
+    title: string;
+    description: string;
+    date: string;
+    niche?: string;
+  }>;
+}
+
+const { articles } = Astro.props;
+---
+
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+  {articles.map((article) => (
+    <a
+      href={`/blog/${article.slug}`}
+      class="block bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-card p-6 hover:bg-[var(--bg-hover)] hover:border-[var(--border-strong)] transition-all group"
+    >
+      {article.niche && (
+        <span class="inline-block px-3 py-1 mb-3 text-xs font-semibold rounded-pill bg-[var(--bg-elevated)] text-[var(--text-secondary)]">
+          {article.niche}
+        </span>
+      )}
+      
+      <h4 class="text-xl font-display font-bold text-[var(--text-primary)] mb-3 group-hover:text-[var(--accent-primary)] transition-colors">
+        {article.title}
+      </h4>
+      
+      <p class="text-[var(--text-secondary)] mb-4 line-clamp-2">
+        {article.description}
+      </p>
+      
+      <div class="flex items-center justify-between text-sm text-[var(--text-muted)]">
+        <span>{article.date}</span>
+        <span class="group-hover:text-[var(--accent-primary)] transition-colors">
+          Читать →
+        </span>
+      </div>
+    </a>
+  ))}
+</div>

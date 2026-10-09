@@ -1,0 +1,139 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection, getEntry, render } from 'astro:content';
+import AdBlock from '../../components/AdBlock.astro';
+import CTAButton from '../../components/CTAButton.astro';
+import RelatedArticles from '../../components/RelatedArticles.astro';
+import { Markdown } from 'astro:components';
+
+export async function getStaticPaths() {
+  const posts = await getCollection('blog');
+  return posts.map((post) => ({
+    params: { slug: post.id },
+  }));
+}
+
+const { slug } = Astro.params;
+const entry = await getEntry('blog', slug!);
+const posts = await getCollection('blog');
+
+if (!entry) {
+  return Astro.redirect('/404');
+}
+
+const relatedPosts = posts
+  .filter((post) => post.slug !== slug && post.data.niche === entry.data.niche)
+  .slice(0, 3);
+
+const { Content } = await render(entry);
+---
+
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  canonical={`/blog/${slug}/`}
+  image={entry.data.image}
+  pubDate={entry.data.pubDate}
+  author={entry.data.author}
+  type="article"
+>
+  <div class="container mx-auto px-4 py-12 max-w-4xl">
+    <article class="mb-12">
+      <header class="mb-10">
+        <div class="flex items-center gap-3 mb-6">
+          <span class="text-sm font-medium px-3 py-1 rounded-full bg-blue-50 text-blue-700">
+            {
+              entry.data.niche === 'it-specialisty' && 'IT‑специалисты'
+              || entry.data.niche === 'startup' && 'Стартапы'
+              || entry.data.niche === 'freelancers' && 'Фриланс'
+              || entry.data.niche === 'online-school' && 'Онлайн‑школы'
+              || entry.data.niche === 'ecommerce' && 'E‑commerce'
+              || entry.data.niche === 'digital-agency' && 'Digital‑агентства'
+              || 'Digital'
+            }
+          </span>
+          <time class="text-sm text-gray-500" datetime={entry.data.pubDate.toISOString()}>
+            {entry.data.pubDate.toLocaleDateString('ru-RU', {
+              day: 'numeric',
+              month: 'long',
+              year: 'numeric',
+            })}
+          </time>
+          <span class="text-sm text-gray-500">•</span>
+          <span class="text-sm text-gray-500">{entry.data.author}</span>
+        </div>
+        <h1 class="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+          {entry.data.title}
+        </h1>
+        <p class="text-xl text-gray-600">
+          {entry.data.description}
+        </p>
+      </header>
+
+      <AdBlock slot="top" />
+
+      <div class="prose prose-lg prose-blue max-w-none mb-12">
+        <Content />
+      </div>
+
+      <AdBlock slot="middle" />
+
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 mb-12">
+        <div class="max-w-2xl mx-auto text-center">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4">
+            Нужна помощь с выбором банка?
+          </h2>
+          <p class="text-gray-700 mb-8">
+            Оставьте заявку, и мы бесплатно подберём для вас расчётный счёт с эквайрингом и валютным контролем.
+          </p>
+          <div class="flex flex-col sm:flex-row gap-4 justify-center">
+            <CTAButton href="/#consult" variant="primary">
+              Бесплатная консультация
+            </CTAButton>
+            <CTAButton href="/#comparison" variant="outline">
+              Сравнить банки
+            </CTAButton>
+          </div>
+        </div>
+      </div>
+
+      <AdBlock slot="bottom" />
+    </article>
+
+    {
+      relatedPosts.length > 0 && (
+        <RelatedArticles articles={relatedPosts} />
+      )
+    }
+
+    <section class="border-t border-gray-200 pt-12 mt-12">
+      <div class="text-center">
+        <h2 class="text-2xl font-bold text-gray-900 mb-4">
+          Понравилась статья?
+        </h2>
+        <p class="text-gray-600 mb-8 max-w-2xl mx-auto">
+          Подпишитесь на рассылку, чтобы получать новые статьи о РКО, эквайринге и налогах для digital‑предпринимателей.
+        </p>
+        <form
+          class="max-w-md mx-auto flex flex-col sm:flex-row gap-3"
+          action="https://formspree.io/f/your-form-id"
+          method="POST"
+        >
+          <input
+            type="email"
+            name="email"
+            placeholder="Ваш email"
+            required
+            class="flex-1 px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+          />
+          <button
+            type="submit"
+            class="px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors whitespace-nowrap"
+          >
+            Подписаться
+          </button>
+        </form>
+      </div>
+    </section>
+  </div>
+</BaseLayout>

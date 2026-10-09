@@ -1,43 +1,98 @@
-# Astro Starter Kit: Minimal
+# RKO.digital — расчётные счета для digital‑предпринимателей
 
-```sh
-npm create astro@latest -- --template minimal
+Сайт‑подборщик банков для IT‑специалистов, фрилансеров, стартапов, онлайн‑школ и e‑commerce. Партнёрские программы банков + будущая реклама на сайте.
+
+## 🚀 Технический стек
+
+- **Astro** (v6) — статический генератор
+- **TypeScript** — строгая типизация
+- **Tailwind CSS** — утилитарные стили
+- **Vercel / Cloudflare Pages** — деплой
+
+## 📁 Структура проекта
+
+```
+src/
+├── components/          # Astro‑компоненты (AdBlock, BankCard, CTAButton и др.)
+├── layouts/            # Базовый макет (BaseLayout.astro)
+├── pages/              # Страницы (index.astro, blog/, policy/)
+├── content/            # Коллекция статей (blog/*.md)
+├── data/               # JSON‑данные (banks.json, niches.json)
+└── styles/             # Глобальные стили (global.css)
 ```
 
-> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
+## 🧞 Команды
 
-## 🚀 Project Structure
-
-Inside of your Astro project, you'll see the following folders and files:
-
-```text
-/
-├── public/
-├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+```bash
+npm install          # установка зависимостей
+npm run dev          # запуск dev‑сервера на localhost:4321
+npm run build        # сборка статического сайта в dist/
+npm run preview      # предпросмотр собранного сайта
+npm run lint         # проверка кода (если настроено)
 ```
 
-Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
+## 🌐 Деплой
 
-There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
+### Vercel
 
-Any static assets, like images, can be placed in the `public/` directory.
+1. Создайте аккаунт на [vercel.com](https://vercel.com)
+2. Подключите репозиторий GitHub / GitLab
+3. Настройки автоматически определяются (Astro)
+4. Добавьте переменные окружения в панели Vercel:
+   - `PUBLIC_YANDEX_METRIKA_ID` (опционально)
+   - `PUBLIC_GOOGLE_ANALYTICS_ID` (опционально)
+5. Деплой запустится автоматически после push в ветку `main`
 
-## 🧞 Commands
+### Cloudflare Pages
 
-All commands are run from the root of the project, from a terminal:
+1. В панели Cloudflare Pages создайте новый проект
+2. Укажите репозиторий
+3. Настройки сборки:
+   - **Build command:** `npm run build`
+   - **Build output directory:** `dist`
+4. Добавьте переменные окружения (Environment Variables)
+5. Нажмите **Deploy**
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## 🔧 Конфигурация
 
-## 👀 Want to learn more?
+- `astro.config.mjs` — настройки Astro, интеграции (sitemap, robots.txt)
+- `src/content.config.ts` — схема коллекции статей
+- `tsconfig.json` — алиас `@/*` → `src/*`
+- `.env.example` — пример переменных окружения
 
-Feel free to check [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+## 📝 Контент‑коллекция
+
+Статьи хранятся в `src/content/blog/*.md` с фронтмэттером:
+
+```yaml
+---
+title: 'Заголовок'
+description: 'Описание'
+pubDate: 2026-01-15
+author: 'Автор'
+niche: 'it-specialisty'  # один из предопределённых ниш
+image: '/og-image.png'   # опционально
+---
+```
+
+## 📊 SEO и аналитика
+
+- **OG‑теги / Twitter Cards** — настроены в BaseLayout.astro
+- **JSON‑LD** — Organization, FAQPage, Article (для статей)
+- **Яндекс.Метрика / Google Analytics** — подключаются через переменные окружения
+- **Sitemap.xml / robots.txt** — генерируются автоматически
+
+## 🧪 Тестирование
+
+1. **Мобильная адаптация** — проверьте на ширине 390px
+2. **Lighthouse** — Performance ≥ 95 (после оптимизации)
+3. **Типы** — `npm run typecheck` (если настроено)
+4. **Сборка** — `npm run build` должна проходить без ошибок
+
+## 📄 Лицензия
+
+Проприетарный код. Использование только с разрешения правообладателя.
+
+---
+
+*Проект создан для партнёрских программ банков и монетизации через рекламу. Все партнёрские ссылки используют `rel="nofollow sponsored noopener"`.*

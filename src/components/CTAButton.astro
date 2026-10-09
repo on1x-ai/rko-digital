@@ -1,0 +1,42 @@
+---
+export interface Props {
+  href: string;
+  variant?: 'primary' | 'secondary' | 'ghost' | 'link';
+  size?: 'sm' | 'md' | 'lg';
+  fullWidth?: boolean;
+  children: string;
+  onClick?: () => void;
+}
+
+const { href, variant = 'primary', size = 'md', fullWidth = false, children } = Astro.props;
+
+const baseClasses = 'inline-flex items-center justify-center font-text font-medium transition-colors focus:outline-none focus:ring-2 focus:ring-[var(--accent-primary)] focus:ring-offset-2 focus:ring-offset-[var(--bg-base)] disabled:opacity-50 disabled:cursor-not-allowed';
+
+const variantClasses = {
+  primary: 'bg-[var(--accent-primary)] text-[var(--text-inverse)] hover:bg-[var(--accent-hover)]',
+  secondary: 'bg-transparent text-[var(--text-primary)] border border-[var(--border-subtle)] hover:bg-[var(--bg-hover)] hover:border-[var(--border-strong)]',
+  ghost: 'bg-transparent text-[var(--text-secondary)] hover:text-[var(--text-primary)]',
+  link: 'bg-transparent text-[var(--accent-primary)] underline hover:text-[var(--accent-hover)]'
+};
+
+const sizeClasses = {
+  sm: 'px-5 py-2 text-sm rounded-button',
+  md: 'px-6 py-3 text-base rounded-button',
+  lg: 'px-8 py-4 text-lg rounded-button'
+};
+
+const widthClass = fullWidth ? 'w-full' : '';
+
+const className = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass}`;
+---
+
+<a
+  href={href}
+  class={className}
+  rel="nofollow sponsored noopener"
+  target="_blank"
+  data-erid=""
+  data-goal="cta-click"
+>
+  {children}
+</a>

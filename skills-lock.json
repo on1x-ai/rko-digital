@@ -1,0 +1,17 @@
+{
+  "version": 1,
+  "skills": {
+    "design-taste-frontend": {
+      "source": "Leonxlnx/taste-skill",
+      "sourceType": "github",
+      "skillPath": "skills/taste-skill/SKILL.md",
+      "computedHash": "899b84384f74f540ea5284d9b2e9234e050998b42eacc805410b518d4226c0b3"
+    },
+    "minimalist-ui": {
+      "source": "mes28skills/minimalist-ui",
+      "sourceType": "github",
+      "skillPath": "skill/SKILL.md",
+      "computedHash": "6b6c6229ebf607be68fe2f40cd82d348b35d6a794bbfff1f8f2e3f84b3b442e3"
+    }
+  }
+}

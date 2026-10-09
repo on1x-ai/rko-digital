@@ -5,13 +5,18 @@ import tailwindcss from '@tailwindcss/vite';
 
 import sitemap from '@astrojs/sitemap';
 import robots from 'astro-robots-txt';
-// import seo from 'astro-seo';
 
 // https://astro.build/config
 export default defineConfig({
+  site: 'https://rko.digital',
+  output: 'static',
+
   vite: {
     plugins: [tailwindcss()]
   },
 
-  integrations: [sitemap(), robots()]
+  integrations: [
+    sitemap(),
+    robots()
+  ]
 });

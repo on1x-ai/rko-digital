@@ -1,0 +1,53 @@
+---
+export interface Props {
+  items: Array<{
+    question: string;
+    answer: string;
+  }>;
+}
+
+const { items } = Astro.props;
+---
+
+<div class="space-y-4">
+  {items.map((item, idx) => (
+    <details
+      class="group border border-[var(--border-subtle)] rounded-card bg-[var(--bg-surface)] p-6 transition-colors hover:bg-[var(--bg-hover)]"
+      key={idx}
+    >
+      <summary class="flex items-center justify-between cursor-pointer list-none">
+        <h3 class="text-lg font-text font-semibold text-[var(--text-primary)]">
+          {item.question}
+        </h3>
+        <svg
+          class="w-5 h-5 text-[var(--text-secondary)] transition-transform group-open:rotate-180"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
+        >
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+        </svg>
+      </summary>
+      <div class="mt-4 text-[var(--text-secondary)] leading-relaxed">
+        {item.answer}
+      </div>
+    </details>
+  ))}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "mainEntity": [
+    {items.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))}
+  ]
+}
+</script>

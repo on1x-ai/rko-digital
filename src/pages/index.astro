@@ -1,16 +1,189 @@
 ---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import Header from '../components/Header.astro';
+import BankComparison from '../components/BankComparison.astro';
+import FAQ from '../components/FAQ.astro';
+import AdBlock from '../components/AdBlock.astro';
+import CTAButton from '../components/CTAButton.astro';
+import StepGuide from '../components/StepGuide.astro';
+import Metric from '../components/Metric.astro';
+import Review from '../components/Review.astro';
+
+import nichesData from '../data/niches.json';
+const steps = nichesData.niches[0].stepGuide;
+const faqItems = nichesData.niches[0].faq;
 ---
 
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro</title>
-	</head>
-	<body>
-		<h1 class="text-4xl font-bold text-blue-600">Тест Tailwind</h1>
-	</body>
-</html>
+<BaseLayout>
+  <Header />
+
+  <main class="container mx-auto px-4 py-12">
+    <section class="text-center mb-16">
+      <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
+        Расчётный счёт для digital‑предпринимателя
+      </h1>
+      <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+        Подберём банк с эквайрингом, валютным контролем и низкими комиссиями для IT‑специалистов, фрилансеров, стартапов и онлайн‑школ.
+      </p>
+      <div class="flex flex-col sm:flex-row gap-4 justify-center">
+        <CTAButton href="/#consult" variant="primary">
+          Подобрать банк
+        </CTAButton>
+        <CTAButton href="/blog/" variant="outline">
+          Читать блог
+        </CTAButton>
+      </div>
+    </section>
+
+    <AdBlock slot="top" />
+
+    <section class="mb-16" id="comparison">
+      <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
+        Сравнение банков
+      </h2>
+      <BankComparison />
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
+        Как это работает
+      </h2>
+      <StepGuide steps={steps} />
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
+        Цифры, которые говорят сами за себя
+      </h2>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
+        <Metric value="95%" label="Клиентов открывают счёт онлайн" />
+        <Metric value="0 ₽" label="На открытие счёта" />
+        <Metric value="24/7" label="Поддержка в чате" />
+        <Metric value="1 день" label="Среднее время открытия" />
+      </div>
+    </section>
+
+    <AdBlock slot="middle" />
+
+    <section class="mb-16" id="consult">
+      <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12">
+        <div class="max-w-2xl mx-auto">
+          <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">
+            Нужна помощь с выбором банка?
+          </h2>
+          <p class="text-gray-700 mb-8 text-center">
+            Оставьте заявку, и мы бесплатно подберём для вас расчётный счёт с эквайрингом и валютным контролем.
+          </p>
+          <form
+            class="space-y-6"
+            action="https://formspree.io/f/your-form-id"
+            method="POST"
+          >
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                  Имя
+                </label>
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="Алексей"
+                />
+              </div>
+              <div>
+                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                  Email
+                </label>
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  required
+                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  placeholder="alexey@example.com"
+                />
+              </div>
+            </div>
+            <div>
+              <label for="niche" class="block text-sm font-medium text-gray-700 mb-2">
+                Ваша ниша
+              </label>
+              <select
+                id="niche"
+                name="niche"
+                required
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+              >
+                <option value="" disabled selected>Выберите направление</option>
+                <option value="it-specialisty">IT‑специалист / разработчик</option>
+                <option value="freelancers">Фрилансер</option>
+                <option value="startup">Стартап</option>
+                <option value="online-school">Онлайн‑школа</option>
+                <option value="ecommerce">E‑commerce</option>
+                <option value="digital-agency">Digital‑агентство</option>
+              </select>
+            </div>
+            <div>
+              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                Комментарий (необязательно)
+              </label>
+              <textarea
+                id="message"
+                name="message"
+                rows={4}
+                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                placeholder="Например, нужен эквайринг для приёма платежей от учеников..."
+              />
+            </div>
+            <div class="text-center">
+              <button
+                type="submit"
+                class="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+              >
+                Отправить заявку
+              </button>
+              <p class="text-sm text-gray-500 mt-4">
+                Нажимая кнопку, вы соглашаетесь с <a href="/policy/" class="text-blue-600 hover:underline">Политикой конфиденциальности</a>.
+              </p>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
+        Отзывы клиентов
+      </h2>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <Review
+          author="Михаил, backend‑разработчик"
+          text="Открыл счёт в Т‑Банке через сайт. Валютный контроль действительно упрощённый, комиссии за SWIFT низкие. Рекомендую!"
+          rating={5}
+        />
+        <Review
+          author="Анна, основатель онлайн‑школы"
+          text="Подобрали банк с эквайрингом для массовых платежей. Интеграция с GetCourse заняла 2 дня. Оборот вырос на 40%."
+          rating={5}
+        />
+        <Review
+          author="Денис, фрилансер"
+          text="Долго выбирал между Альфа‑Банком и Точкой. Консультация помогла определиться. Открыл счёт за 20 минут онлайн."
+          rating={4}
+        />
+      </div>
+    </section>
+
+    <section class="mb-16">
+      <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
+        Частые вопросы
+      </h2>
+      <FAQ items={faqItems} />
+    </section>
+
+    <AdBlock slot="bottom" />
+  </main>
+</BaseLayout>

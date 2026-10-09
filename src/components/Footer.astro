@@ -1,5 +1,78 @@
 ---
+import PartnerLink from './PartnerLink.astro';
 ---
-<footer>
-  <!-- Footer placeholder -->
+
+<footer class="bg-[var(--bg-surface)] border-t border-[var(--border-strong)] mt-24">
+  <div class="container mx-auto px-4 py-12">
+    <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+      <!-- Колонка 1: Ниши -->
+      <div>
+        <h4 class="font-display font-bold text-[var(--text-primary)] mb-4">Ниши</h4>
+        <ul class="space-y-2">
+          <li><a href="/it-specialisty" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">IT‑специалисты</a></li>
+          <li><a href="/startup" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Стартапы</a></li>
+          <li><a href="/freelancers" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Фрилансеры</a></li>
+          <li><a href="/online-school" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Онлайн‑школы</a></li>
+          <li><a href="/ecommerce" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">E‑commerce</a></li>
+          <li><a href="/digital-agency" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Digital‑агентства</a></li>
+        </ul>
+      </div>
+
+      <!-- Колонка 2: Блог -->
+      <div>
+        <h4 class="font-display font-bold text-[var(--text-primary)] mb-4">Блог</h4>
+        <ul class="space-y-2">
+          <li><a href="/blog" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Все статьи</a></li>
+          <li><a href="/blog/kak-vybrat-bank-dlya-it-frilansera" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Как выбрать банк для IT‑фрилансера</a></li>
+          <li><a href="/blog/valyutnyj-kontrol-dlya-it" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Валютный контроль для IT</a></li>
+          <li><a href="/blog/npd-vs-ip" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">НПД vs ИП</a></li>
+        </ul>
+      </div>
+
+      <!-- Колонка 3: О проекте -->
+      <div>
+        <h4 class="font-display font-bold text-[var(--text-primary)] mb-4">О проекте</h4>
+        <ul class="space-y-2">
+          <li><a href="/policy" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Политика конфиденциальности</a></li>
+          <li><a href="#faq" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Частые вопросы</a></li>
+          <li><a href="mailto:contact@rko.digital" class="text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">Контакты</a></li>
+        </ul>
+      </div>
+
+      <!-- Колонка 4: Соцсети -->
+      <div>
+        <h4 class="font-display font-bold text-[var(--text-primary)] mb-4">Следите за обновлениями</h4>
+        <div class="space-y-4">
+          <a href="https://t.me/rko_digital" target="_blank" rel="noopener" class="inline-flex items-center gap-2 text-[var(--text-secondary)] hover:text-[var(--accent-primary)] transition-colors">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.24-.02-.1.02-1.69 1.09-4.78 3.2-.45.31-.86.46-1.23.45-.41-.01-1.2-.23-1.79-.42-.72-.23-1.29-.36-1.24-.76.03-.23.27-.46.74-.7 2.99-1.3 5-2.16 6.02-2.59 2.78-1.16 3.36-1.36 3.74-1.36.08 0 .27.02.39.12.1.08.13.19.14.27-.01.06.01.28 0 0"/>
+            </svg>
+            Telegram‑канал
+          </a>
+          <p class="text-sm text-[var(--text-muted)]">
+            Подписывайтесь, чтобы получать новые статьи и обновления по РКО.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Юридическая информация -->
+    <div class="pt-8 border-t border-[var(--border-subtle)]">
+      <p class="text-sm text-[var(--text-muted)] mb-2">
+        <strong class="text-[var(--text-secondary)]">Реклама.</strong> ИП Иванов Иван Иванович. ИНН 1234567890. ОГРНИП 123456789012345.
+      </p>
+      <p class="text-sm text-[var(--text-muted)] mb-4">
+        Проект не является банком или финансовой организацией. Вся информация носит справочный характер. 
+        Партнёрские ссылки ведут на сайты банков‑партнёров.
+      </p>
+      <div class="flex flex-col md:flex-row justify-between items-center gap-4">
+        <p class="text-sm text-[var(--text-muted)]">
+          © 2026 RKO.digital. Все права защищены.
+        </p>
+        <p class="text-sm text-[var(--text-muted)]">
+          Сайт работает на <PartnerLink href="https://astro.build">Astro</PartnerLink> + <PartnerLink href="https://tailwindcss.com">Tailwind CSS</PartnerLink>
+        </p>
+      </div>
+    </div>
+  </div>
 </footer>

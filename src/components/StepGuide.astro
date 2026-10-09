@@ -1,0 +1,47 @@
+---
+export interface Props {
+  steps: Array<{
+    step: number;
+    title: string;
+    description: string;
+  }>;
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="space-y-8">
+  {steps.map((item) => (
+    <div class="flex gap-6">
+      <div class="flex-shrink-0">
+        <div class="w-12 h-12 rounded-full bg-[var(--accent-primary)] text-[var(--text-inverse)] flex items-center justify-center font-display font-bold text-2xl">
+          {item.step}
+        </div>
+      </div>
+      <div>
+        <h3 class="text-xl font-display font-bold text-[var(--text-primary)] mb-2">
+          {item.title}
+        </h3>
+        <p class="text-[var(--text-secondary)] leading-relaxed">
+          {item.description}
+        </p>
+      </div>
+    </div>
+  ))}
+</div>
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "HowTo",
+  "name": "Как открыть расчётный счёт",
+  "step": [
+    {steps.map(step => ({
+      "@type": "HowToStep",
+      "position": step.step,
+      "name": step.title,
+      "text": step.description
+    }))}
+  ]
+}
+</script>

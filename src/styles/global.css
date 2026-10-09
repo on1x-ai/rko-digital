@@ -1,1 +1,123 @@
 @import "tailwindcss";
+
+:root {
+  /* Фон и поверхности */
+  --bg-base: #0A0A0B;
+  --bg-surface: #141416;
+  --bg-hover: #1C1C1F;
+  --bg-elevated: #1F1F23;
+
+  /* Границы */
+  --border-subtle: #26262A;
+  --border-strong: #35353A;
+
+  /* Текст */
+  --text-primary: #F5F5F7;
+  --text-secondary: #8A8A8E;
+  --text-muted: #5A5A5E;
+  --text-inverse: #0A0A0B;
+
+  /* Акценты */
+  --accent-primary: #C8FF3D;
+  --accent-hover: #B8EF2D;
+  --success: #3DD68C;
+  --error: #FF4D4D;
+  --warning: #FFB84D;
+
+  /* Шрифты */
+  --font-display: 'Unbounded', sans-serif;
+  --font-text: 'Golos Text', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+
+  /* Радиусы */
+  --radius-card: 24px;
+  --radius-button: 12px;
+  --radius-input: 8px;
+  --radius-pill: 9999px;
+
+  /* Отступы (базовая единица 4 px) */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-24: 96px;
+}
+
+@font-face {
+  font-family: 'Unbounded';
+  font-style: normal;
+  font-weight: 600 700;
+  src: url('https://fonts.googleapis.com/css2?family=Unbounded:wght@600;700&display=swap') format('woff2');
+}
+
+@font-face {
+  font-family: 'Golos Text';
+  font-style: normal;
+  font-weight: 400 500 600;
+  src: url('https://fonts.googleapis.com/css2?family=Golos+Text:wght@400;500;600&display=swap') format('woff2');
+}
+
+@font-face {
+  font-family: 'IBM Plex Mono';
+  font-style: normal;
+  font-weight: 400;
+  src: url('https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400&display=swap') format('woff2');
+}
+
+html {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  font-family: var(--font-text);
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+h1, h2, h3 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+}
+
+h4, h5, h6 {
+  font-family: var(--font-text);
+  font-weight: 600;
+}
+
+code, pre, .mono {
+  font-family: var(--font-mono);
+  font-size: 13px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
+/* Утилиты для Tailwind */
+@layer utilities {
+  .bg-surface { background-color: var(--bg-surface); }
+  .bg-hover { background-color: var(--bg-hover); }
+  .bg-elevated { background-color: var(--bg-elevated); }
+  .border-subtle { border-color: var(--border-subtle); }
+  .border-strong { border-color: var(--border-strong); }
+  .text-primary { color: var(--text-primary); }
+  .text-secondary { color: var(--text-secondary); }
+  .text-muted { color: var(--text-muted); }
+  .text-inverse { color: var(--text-inverse); }
+  .accent-primary { color: var(--accent-primary); }
+  .bg-accent-primary { background-color: var(--accent-primary); }
+  .border-accent-primary { border-color: var(--accent-primary); }
+  .rounded-card { border-radius: var(--radius-card); }
+  .rounded-button { border-radius: var(--radius-button); }
+  .rounded-input { border-radius: var(--radius-input); }
+  .rounded-pill { border-radius: var(--radius-pill); }
+}

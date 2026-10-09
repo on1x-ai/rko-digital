@@ -1,0 +1,19 @@
+---
+export interface Props {
+  author: string;
+  business: string;
+  text: string;
+}
+
+const { author, business, text } = Astro.props;
+---
+
+<blockquote class="relative border-l-4 border-[var(--accent-primary)] pl-6 py-4 bg-[var(--bg-surface)] rounded-card">
+  <div class="text-4xl text-[var(--accent-primary)] opacity-20 absolute -top-2 -left-2">“</div>
+  <p class="text-[var(--text-primary)] text-lg italic mb-4">
+    {text}
+  </p>
+  <footer class="text-[var(--text-secondary)] text-sm">
+    <span class="font-semibold">{author}</span> – {business}
+  </footer>
+</blockquote>
