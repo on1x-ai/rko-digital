@@ -2,32 +2,32 @@
 import CTAButton from './CTAButton.astro';
 ---
 
-<header class="sticky top-0 z-50 bg-[var(--bg-base)] border-b border-[var(--border-subtle)]">
+<header class="sticky top-0 z-50 bg-white border-b border-gray-200 shadow-sm">
   <div class="container mx-auto px-4 py-4">
     <div class="flex items-center justify-between">
       <!-- Логотип -->
       <a href="/" class="flex items-center gap-3">
-        <div class="w-10 h-10 bg-[var(--accent-primary)] rounded-card flex items-center justify-center">
-          <span class="font-display font-bold text-[var(--text-inverse)]">RKO</span>
+        <div class="w-10 h-10 bg-blue-600 rounded-xl flex items-center justify-center">
+          <span class="font-bold text-white">RKO</span>
         </div>
         <div class="hidden md:block">
-          <div class="font-display font-bold text-[var(--text-primary)]">RKO.digital</div>
-          <div class="text-xs text-[var(--text-secondary)]">РКО для digital‑предпринимателей</div>
+          <div class="font-bold text-gray-900">RKO.digital</div>
+          <div class="text-xs text-gray-500">РКО для digital‑предпринимателей</div>
         </div>
       </a>
 
       <!-- Навигация (десктоп) -->
       <nav class="hidden md:flex items-center gap-8">
-        <a href="/" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium">
+        <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">
           Главная
         </a>
-        <a href="/blog" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium">
+        <a href="/blog" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">
           Блог
         </a>
-        <a href="#comparison" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium">
+        <a href="/comparison" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">
           Сравнение банков
         </a>
-        <a href="#faq" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium">
+        <a href="/#faq" class="text-gray-700 hover:text-blue-600 transition-colors font-medium">
           FAQ
         </a>
       </nav>
@@ -35,14 +35,14 @@ import CTAButton from './CTAButton.astro';
       <!-- CTA и бургер -->
       <div class="flex items-center gap-4">
         <div class="hidden md:block">
-          <CTAButton href="https://example.com/partner/tbank" size="sm">
+          <CTAButton href="https://example.com/partner/tbank" size="sm" variant="primary">
             Открыть счёт
           </CTAButton>
         </div>
         
         <!-- Бургер для мобильных -->
         <button class="md:hidden p-2" id="menu-toggle">
-          <svg class="w-6 h-6 text-[var(--text-primary)]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-6 h-6 text-gray-700" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
           </svg>
         </button>
@@ -50,18 +50,18 @@ import CTAButton from './CTAButton.astro';
     </div>
 
     <!-- Мобильное меню -->
-    <div class="md:hidden hidden mt-4 pb-4 border-t border-[var(--border-subtle)] pt-4" id="mobile-menu">
+    <div class="md:hidden hidden mt-4 pb-4 border-t border-gray-200 pt-4" id="mobile-menu">
       <div class="flex flex-col gap-4">
-        <a href="/" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium py-2">
+        <a href="/" class="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">
           Главная
         </a>
-        <a href="/blog" class="text-[var(--text-primary)] hover:text-[var(--text-accent)] transition-colors font-medium py-2">
+        <a href="/blog" class="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">
           Блог
         </a>
-        <a href="#comparison" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium py-2">
+        <a href="/comparison" class="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">
           Сравнение банков
         </a>
-        <a href="#faq" class="text-[var(--text-primary)] hover:text-[var(--accent-primary)] transition-colors font-medium py-2">
+        <a href="/#faq" class="text-gray-700 hover:text-blue-600 transition-colors font-medium py-2">
           FAQ
         </a>
         <div class="pt-2">

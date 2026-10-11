@@ -14,15 +14,15 @@ const { steps } = Astro.props;
   {steps.map((item) => (
     <div class="flex gap-6">
       <div class="flex-shrink-0">
-        <div class="w-12 h-12 rounded-full bg-[var(--accent-primary)] text-[var(--text-inverse)] flex items-center justify-center font-display font-bold text-2xl">
+        <div class="w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold text-2xl shadow-lg">
           {item.step}
         </div>
       </div>
-      <div>
-        <h3 class="text-xl font-display font-bold text-[var(--text-primary)] mb-2">
+      <div class="flex-1">
+        <h3 class="text-xl font-bold text-gray-900 mb-3">
           {item.title}
         </h3>
-        <p class="text-[var(--text-secondary)] leading-relaxed">
+        <p class="text-gray-700 leading-relaxed bg-gray-50 rounded-xl p-4 border border-gray-200">
           {item.description}
         </p>
       </div>
@@ -35,6 +35,7 @@ const { steps } = Astro.props;
   "@context": "https://schema.org",
   "@type": "HowTo",
   "name": "Как открыть расчётный счёт",
+  "description": "Пошаговое руководство по выбору банка, подготовке документов, подаче заявки и настройке интеграций для digital‑предпринимателей.",
   "step": [
     {steps.map(step => ({
       "@type": "HowToStep",
