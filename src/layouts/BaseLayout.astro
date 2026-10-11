@@ -1,5 +1,6 @@
 ---
 import "../styles/global.css";
+import Header from "../components/Header.astro";
 
 const {
   title = 'RKO.digital — расчётные счета для digital‑предпринимателей',
@@ -192,6 +193,7 @@ const currentYear = new Date().getFullYear();
   }
 </head>
 <body class="min-h-screen bg-white text-gray-900 antialiased">
+  <Header />
   <slot />
 
   <footer class="mt-24 border-t border-gray-200">

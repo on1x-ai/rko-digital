@@ -8,13 +8,13 @@
   --bg-elevated: #1F1F23;
 
   /* Границы */
-  --border-subtle: #26262A;
-  --border-strong: #35353A;
+  --border-subtle: #3A3A3C;
+  --border-strong: #48484A;
 
   /* Текст */
-  --text-primary: #F5F5F7;
-  --text-secondary: #8A8A8E;
-  --text-muted: #5A5A5E;
+  --text-primary: #FFFFFF;
+  --text-secondary: #C1C1C6;
+  --text-muted: #8A8A8E;
   --text-inverse: #0A0A0B;
 
   /* Акценты */

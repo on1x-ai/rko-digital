@@ -1,6 +1,5 @@
 ---
 import BaseLayout from '../layouts/BaseLayout.astro';
-import Header from '../components/Header.astro';
 import BankComparison from '../components/BankComparison.astro';
 import FAQ from '../components/FAQ.astro';
 import AdBlock from '../components/AdBlock.astro';
@@ -15,10 +14,8 @@ const faqItems = nichesData.niches[0].faq;
 ---
 
 <BaseLayout>
-  <Header />
-
   <main class="container mx-auto px-4 py-12">
-    <section class="text-center mb-16">
+    <section class="text-center mb-20">
       <h1 class="text-5xl md:text-6xl font-bold text-gray-900 mb-6">
         Расчётный счёт для digital‑предпринимателя
       </h1>
@@ -29,19 +26,92 @@ const faqItems = nichesData.niches[0].faq;
         <CTAButton href="/#consult" variant="primary">
           Подобрать банк
         </CTAButton>
+        <CTAButton href="/comparison/" variant="outline">
+          Сравнить банки
+        </CTAButton>
         <CTAButton href="/blog/" variant="outline">
           Читать блог
         </CTAButton>
       </div>
     </section>
 
+    <section class="mb-20">
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-8">
+          <div class="text-4xl font-bold text-blue-700 mb-4">12+</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Банков в базе</h3>
+          <p class="text-gray-600">Анализируем тарифы, комиссии и условия всех крупнейших банков РФ, работающих с digital‑бизнесом.</p>
+        </div>
+        <div class="bg-gradient-to-br from-green-50 to-emerald-50 rounded-2xl p-8">
+          <div class="text-4xl font-bold text-green-700 mb-4">95%</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Одобрения с первого раза</h3>
+          <p class="text-gray-600">Помогаем правильно заполнить заявку, чтобы избежать отказов и задержек при открытии счёта.</p>
+        </div>
+        <div class="bg-gradient-to-br from-purple-50 to-violet-50 rounded-2xl p-8">
+          <div class="text-4xl font-bold text-purple-700 mb-4">24/7</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-2">Поддержка</h3>
+          <p class="text-gray-600">Отвечаем на вопросы в чате, помогаем с документами и валютным контролем даже после открытия счёта.</p>
+        </div>
+      </div>
+    </section>
+
     <AdBlock slot="top" />
 
-    <section class="mb-16" id="comparison">
-      <h2 class="text-4xl font-bold text-gray-900 mb-8 text-center">
-        Сравнение банков
+    <section class="mb-20">
+      <h2 class="text-4xl font-bold text-gray-900 mb-10 text-center">
+        Кому подойдёт наш сервис
       </h2>
-      <BankComparison />
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 rounded-full bg-blue-100 text-blue-600 flex items-center justify-center text-2xl mb-4">💻</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">IT‑специалисты</h3>
+          <p class="text-gray-600">Разработчики, тестировщики, DevOps — работаете с зарубежными заказчиками и нуждаетесь в валютном контроле и низких комиссиях за SWIFT.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 rounded-full bg-green-100 text-green-600 flex items-center justify-center text-2xl mb-4">🚀</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Стартапы</h3>
+          <p class="text-gray-600">Принимаете инвестиции, платите поставщикам, нужен счёт с эквайрингом и интеграцией с CRM/ERP.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 rounded-full bg-purple-100 text-purple-600 flex items-center justify-center text-2xl mb-4">🎓</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Онлайн‑школы</h3>
+          <p class="text-gray-600">Принимаете массовые платежи от учеников, нужен эквайринг, интеграция с LMS и автоматическая отправка чеков.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 rounded-full bg-amber-100 text-amber-600 flex items-center justify-center text-2xl mb-4">🛒</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">E‑commerce</h3>
+          <p class="text-gray-600">Продаёте товары онлайн, нужен расчётный счёт с эквайрингом, работа с маркетплейсами и налоговая отчётность.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 rounded-full bg-rose-100 text-rose-600 flex items-center justify-center text-2xl mb-4">👨‍💻</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Фрилансеры</h3>
+          <p class="text-gray-600">Работаете на Upwork, Fiverr, Toptal — нужен счёт для приёма платежей, упрощённая бухгалтерия и легализация доходов.</p>
+        </div>
+        <div class="border border-gray-200 rounded-2xl p-6 hover:shadow-lg transition-shadow">
+          <div class="w-12 h-12 rounded-full bg-indigo-100 text-indigo-600 flex items-center justify-center text-2xl mb-4">🏢</div>
+          <h3 class="text-xl font-bold text-gray-900 mb-3">Digital‑агентства</h3>
+          <p class="text-gray-600">Ведёте проекты для клиентов, платите подрядчикам, нужен валютный контроль и работа с гонорарами.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="mb-16" id="comparison">
+      <div class="text-center">
+        <h2 class="text-4xl font-bold text-gray-900 mb-6">
+          Сравнение банков
+        </h2>
+        <p class="text-xl text-gray-600 max-w-3xl mx-auto mb-10">
+          Мы проанализировали 12+ банков для digital‑предпринимателей. В таблице сравнения — тарифы, комиссии, сроки одобрения и эксклюзивные плюшки.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <CTAButton href="/comparison/" variant="primary">
+            Открыть таблицу сравнения
+          </CTAButton>
+          <CTAButton href="/#consult" variant="outline">
+            Консультация
+          </CTAButton>
+        </div>
+      </div>
     </section>
 
     <section class="mb-16">

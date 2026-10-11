@@ -9,56 +9,74 @@ export interface Props {
 const { banks = banksData.banks } = Astro.props;
 ---
 
-<div class="overflow-x-auto">
+<div class="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
   <table class="w-full border-collapse">
     <thead>
-      <tr class="border-b border-[var(--border-strong)]">
-        <th class="text-left py-4 px-6 text-[var(--text-secondary)] font-text font-semibold">Банк</th>
-        <th class="text-left py-4 px-6 text-[var(--text-secondary)] font-text font-semibold">Открытие</th>
-        <th class="text-left py-4 px-6 text-[var(--text-secondary)] font-text font-semibold">Обслуживание</th>
-        <th class="text-left py-4 px-6 text-[var(--text-secondary)] font-text font-semibold">Платежи</th>
-        <th class="text-left py-4 px-6 text-[var(--text-secondary)] font-text font-semibold">Валюта</th>
-        <th class="text-left py-4 px-6 text-[var(--text-secondary)] font-text font-semibold"></th>
+      <tr class="border-b border-gray-300 bg-gray-50">
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Банк</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Срок одобрения</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Обслуживание</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Платежи / Снятие</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Валюта / SWIFT</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Плюшки</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm"></th>
       </tr>
     </thead>
     <tbody>
       {banks.map((bank) => (
-        <tr class="border-b border-[var(--border-subtle)] hover:bg-[var(--bg-hover)] transition-colors">
+        <tr class="border-b border-gray-100 hover:bg-blue-50 transition-colors">
           <td class="py-4 px-6">
             <div class="flex items-center gap-3">
-              <div class="w-8 h-8 bg-[var(--bg-elevated)] rounded-card flex items-center justify-center text-[var(--text-primary)] font-display font-bold">
+              <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg">
                 {bank.name.charAt(0)}
               </div>
               <div>
-                <div class="font-display font-bold text-[var(--text-primary)]">{bank.name}</div>
-                <div class="text-sm text-[var(--text-secondary)]">{bank.bestFor}</div>
+                <div class="font-bold text-gray-900">{bank.name}</div>
+                <div class="text-sm text-gray-500">{bank.bestFor}</div>
+                <div class="flex items-center gap-1 mt-1">
+                  <span class="text-yellow-500">★</span>
+                  <span class="font-medium text-gray-700">{bank.rating}</span>
+                  <span class="text-gray-400 text-sm">({bank.reviewCount})</span>
+                </div>
               </div>
             </div>
           </td>
           <td class="py-4 px-6">
-            <div class="text-[var(--text-primary)] font-display font-bold tabular-nums">{bank.openingTime}</div>
-            <div class="text-sm text-[var(--text-secondary)]">{bank.openingCost}</div>
+            <div class="text-gray-900 font-bold">{bank.openingTime}</div>
+            <div class="text-sm text-gray-500">{bank.openingCost}</div>
           </td>
           <td class="py-4 px-6">
-            <div class="text-[var(--text-primary)] font-display font-bold tabular-nums">{bank.monthlyFee.start}</div>
-            <div class="text-sm text-[var(--text-secondary)]">далее {bank.monthlyFee.standard}</div>
+            <div class="text-gray-900 font-bold">{bank.monthlyFee.start}</div>
+            <div class="text-sm text-gray-500">далее {bank.monthlyFee.standard}</div>
           </td>
           <td class="py-4 px-6">
-            <div class="text-[var(--text-primary)] font-display font-bold tabular-nums">{bank.perPayment}</div>
-            <div class="text-sm text-[var(--text-secondary)]">снятие {bank.cashWithdrawal}</div>
+            <div class="text-gray-900 font-bold">{bank.perPayment}</div>
+            <div class="text-sm text-gray-500">снятие {bank.cashWithdrawal}</div>
           </td>
           <td class="py-4 px-6">
-            <div class="text-[var(--text-primary)] font-display font-bold tabular-nums">
+            <div class="text-gray-900 font-bold">
               {bank.currencyControl ? 'SWIFT' : '₽'}
             </div>
-            <div class="text-sm text-[var(--text-secondary)]">
+            <div class="text-sm text-gray-500">
               {bank.swift ? 'Валютный контроль' : 'Только рубль'}
             </div>
           </td>
           <td class="py-4 px-6">
-            <CTAButton href={bank.partnerLink} size="sm">
+            <div class="space-y-1">
+              <div class="text-gray-900 font-medium">{bank.cashback}</div>
+              <div class="text-sm text-gray-600">{bank.accounting}</div>
+              <div class="text-xs text-green-600 font-medium">
+                По нашей ссылке — дополнительный бонус
+              </div>
+            </div>
+          </td>
+          <td class="py-4 px-6">
+            <CTAButton href={bank.partnerLink} size="sm" variant="primary">
               Открыть
             </CTAButton>
+            <div class="mt-2 text-xs text-gray-400 text-center">
+              партнёрская ссылка
+            </div>
           </td>
         </tr>
       ))}
@@ -67,55 +85,69 @@ const { banks = banksData.banks } = Astro.props;
 </div>
 
 <!-- Мобильная версия -->
-<div class="hidden max-sm:block space-y-4">
+<div class="hidden max-sm:block space-y-6">
   {banks.map((bank) => (
-    <div class="bg-[var(--bg-surface)] border border-[var(--border-subtle)] rounded-card p-4">
+    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow">
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-3">
-          <div class="w-8 h-8 bg-[var(--bg-elevated)] rounded-card flex items-center justify-center text-[var(--text-primary)] font-display font-bold">
+          <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg">
             {bank.name.charAt(0)}
           </div>
           <div>
-            <div class="font-display font-bold text-[var(--text-primary)]">{bank.name}</div>
-            <div class="text-sm text-[var(--text-secondary)]">{bank.bestFor}</div>
+            <div class="font-bold text-gray-900">{bank.name}</div>
+            <div class="text-sm text-gray-500">{bank.bestFor}</div>
           </div>
         </div>
         <div class="text-right">
-          <div class="text-[var(--text-primary)] font-display font-bold tabular-nums">{bank.rating}</div>
-          <div class="text-xs text-[var(--text-secondary)]">{bank.reviewCount} отзывов</div>
+          <div class="text-gray-900 font-bold">{bank.rating}</div>
+          <div class="text-xs text-gray-500">{bank.reviewCount} отзывов</div>
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 mb-4">
+      <div class="grid grid-cols-2 gap-4 mb-6">
         <div>
-          <div class="text-xs text-[var(--text-secondary)]">Открытие</div>
-          <div class="text-lg font-display font-bold tabular-nums text-[var(--text-primary)]">
+          <div class="text-xs text-gray-500">Срок одобрения</div>
+          <div class="text-lg font-bold text-gray-900">
             {bank.openingTime}
           </div>
+          <div class="text-sm text-gray-600">{bank.openingCost}</div>
         </div>
         <div>
-          <div class="text-xs text-[var(--text-secondary)]">Обслуживание</div>
-          <div class="text-lg font-display font-bold tabular-nums text-[var(--text-primary)]">
+          <div class="text-xs text-gray-500">Обслуживание</div>
+          <div class="text-lg font-bold text-gray-900">
             {bank.monthlyFee.start}
           </div>
+          <div class="text-sm text-gray-600">далее {bank.monthlyFee.standard}</div>
         </div>
         <div>
-          <div class="text-xs text-[var(--text-secondary)]">Платежи</div>
-          <div class="text-lg font-display font-bold tabular-nums text-[var(--text-primary)]">
+          <div class="text-xs text-gray-500">Платежи</div>
+          <div class="text-lg font-bold text-gray-900">
             {bank.perPayment}
           </div>
         </div>
         <div>
-          <div class="text-xs text-[var(--text-secondary)]">Валюта</div>
-          <div class="text-lg font-display font-bold tabular-nums text-[var(--text-primary)]">
+          <div class="text-xs text-gray-500">Валюта</div>
+          <div class="text-lg font-bold text-gray-900">
             {bank.currencyControl ? 'SWIFT' : '₽'}
           </div>
         </div>
       </div>
 
-      <CTAButton href={bank.partnerLink} fullWidth>
+      <div class="mb-6 p-4 bg-green-50 rounded-xl border border-green-100">
+        <div class="font-medium text-green-800 mb-1">Плюшки</div>
+        <div class="text-green-700">{bank.cashback}</div>
+        <div class="text-sm text-green-600">{bank.accounting}</div>
+        <div class="text-xs text-green-500 mt-2">
+          По нашей ссылке — дополнительный бонус
+        </div>
+      </div>
+
+      <CTAButton href={bank.partnerLink} fullWidth variant="primary">
         Открыть счёт в {bank.name}
       </CTAButton>
+      <div class="mt-3 text-xs text-gray-400 text-center">
+        партнёрская ссылка
+      </div>
     </div>
   ))}
 </div>
