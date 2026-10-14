@@ -1,0 +1,22 @@
+---
+import Stat from './Stat.astro';
+
+export interface Props {
+  columns?: number;
+}
+
+const { columns = 3 } = Astro.props;
+const gridClass = columns === 2 ? 'grid-cols-2' : 'grid-cols-3';
+---
+
+<div class={`grid ${gridClass} gap-4 md:gap-6 my-8`}>
+  <slot />
+</div>
+
+<!-- Пример:
+<StatRow>
+  <Stat value="2,4 млн ₽" label="Лимит НПД в год" />
+  <Stat value="6%" label="Налог с иностранцев" />
+  <Stat value="0 ₽" label="Отчётность" hint="никакой" />
+</StatRow>
+-->

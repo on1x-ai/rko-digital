@@ -1,0 +1,43 @@
+---
+export interface Props {
+  items?: string[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="my-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
+  <div class="font-bold text-gray-900 text-lg mb-4">📋 Чеклист</div>
+  {items ? (
+    <ul class="space-y-3">
+      {items.map((item, idx) => (
+        <li key={idx} class="flex items-start gap-3">
+          <div class="w-6 h-6 rounded border-2 border-gray-300 flex items-center justify-center text-gray-500 mt-0.5 flex-shrink-0">
+            {idx + 1}
+          </div>
+          <span class="text-gray-700">{item}</span>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <ul class="space-y-3">
+      <slot />
+    </ul>
+  )}
+</div>
+
+<!-- Пример через пропсы:
+<Checklist items={[
+  'Выбрать банк из таблицы сравнения',
+  'Подготовить паспорт и ИНН',
+  'Забронировать 20 минут на заявку',
+  'Настроить валютный контроль после открытия',
+]} />
+
+Или через слот:
+<Checklist>
+  <li>Проверить комиссию за SWIFT</li>
+  <li>Указать код ОКВЭД 62.01</li>
+  <li>Подключить онлайн‑бухгалтерию</li>
+</Checklist>
+-->

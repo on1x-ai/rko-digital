@@ -1,0 +1,22 @@
+---
+import ScenarioCard from './ScenarioCard.astro';
+
+export interface Props {
+  columns?: number;
+}
+
+const { columns = 3 } = Astro.props;
+const gridClass = columns === 2 ? 'grid-cols-1 md:grid-cols-2' : 'grid-cols-1 md:grid-cols-3';
+---
+
+<div class={`grid ${gridClass} gap-6 my-8`}>
+  <slot />
+</div>
+
+<!-- Пример:
+<ScenarioGrid>
+  <ScenarioCard ... />
+  <ScenarioCard ... />
+  <ScenarioCard ... />
+</ScenarioGrid>
+-->

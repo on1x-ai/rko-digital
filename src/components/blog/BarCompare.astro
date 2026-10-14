@@ -1,0 +1,65 @@
+---
+export interface Props {
+  items?: {
+    label: string;
+    value: number;
+    suffix?: string;
+    note?: string;
+  }[];
+  labels?: string[];
+  values?: number[];
+  unit?: string;
+  title?: string;
+  description?: string;
+}
+
+const { items, labels, values, unit, title, description } = Astro.props;
+
+// Поддержка двух форматов
+const barItems = items || (labels?.map((label, index) => ({
+  label,
+  value: values?.[index] || 0,
+  suffix: unit,
+  note: description
+})) || []);
+
+const maxValue = barItems.length > 0 ? Math.max(...barItems.map(item => item.value)) : 0;
+---
+
+<div class="my-8 space-y-6">
+  {title && <h3 class="font-bold text-gray-800 text-lg mb-4">{title}</h3>}
+  {description && <p class="text-gray-600 mb-6">{description}</p>}
+  {barItems.map((item, index) => {
+    const width = maxValue > 0 ? (item.value / maxValue) * 100 : 0;
+    return (
+      <div key={index}>
+        <div class="flex justify-between mb-2">
+          <span class="font-medium text-gray-900">{item.label}</span>
+          <span class="font-bold text-gray-900">
+            {item.value}
+            {item.suffix && <span class="text-gray-600"> {item.suffix}</span>}
+          </span>
+        </div>
+        <div class="w-full bg-gray-200 rounded-full h-4">
+          <div
+            class="bg-gradient-to-r from-blue-500 to-cyan-500 h-4 rounded-full transition-all duration-700"
+            style={`width: ${width}%`}
+          ></div>
+        </div>
+        {item.note && (
+          <div class="text-sm text-gray-500 mt-2">{item.note}</div>
+        )}
+      </div>
+    );
+  })}
+</div>
+
+<!-- Пример:
+<BarCompare
+  items={[
+    { label: 'Т‑Банк', value: 0.7, suffix: '% за конвертацию', note: 'Для IT‑фрилансеров' },
+    { label: 'Альфа‑Банк', value: 0.5, suffix: '% за конвертацию', note: 'При обороте > $10k' },
+    { label: 'Тинькофф', value: 1.2, suffix: '% за конвертацию', note: 'Стандартный тариф' },
+  ]}
+/>
+-->

@@ -1,0 +1,56 @@
+---
+export interface Props {
+  variant?: 'tip' | 'warning' | 'info' | 'danger';
+  title?: string;
+}
+
+const { variant = 'info', title } = Astro.props;
+
+const variantStyles = {
+  tip: {
+    border: 'border-green-500',
+    bg: 'bg-green-50',
+    text: 'text-green-800',
+    icon: '💡',
+  },
+  warning: {
+    border: 'border-amber-500',
+    bg: 'bg-amber-50',
+    text: 'text-amber-800',
+    icon: '⚠️',
+  },
+  info: {
+    border: 'border-blue-500',
+    bg: 'bg-blue-50',
+    text: 'text-blue-800',
+    icon: 'ℹ️',
+  },
+  danger: {
+    border: 'border-red-500',
+    bg: 'bg-red-50',
+    text: 'text-red-800',
+    icon: '🚨',
+  },
+};
+
+const style = variantStyles[variant];
+---
+
+<div class={`my-8 p-6 border-l-4 ${style.border} ${style.bg} rounded-r-xl`}>
+  <div class="flex items-start gap-3">
+    <div class="text-2xl">{style.icon}</div>
+    <div class="flex-1">
+      {title && <div class={`font-bold text-lg ${style.text} mb-2`}>{title}</div>}
+      <div class={`${style.text} leading-relaxed`}>
+        <slot />
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Пример:
+<Callout variant="warning" title="Блокировка по 115-ФЗ">
+  Если банк заподозрит необычные операции, счёт могут заблокировать на 30 дней. 
+  Всегда имей под рукой договоры с заказчиками.
+</Callout>
+-->

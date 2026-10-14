@@ -1,0 +1,21 @@
+---
+export interface Props {
+  title?: string;
+}
+
+const { title = 'Короткий ответ' } = Astro.props;
+---
+
+<div class="my-8 p-6 border-l-4 border-blue-500 bg-blue-50 rounded-r-xl">
+  <div class="font-bold text-lg text-gray-900 mb-2">{title}</div>
+  <div class="text-gray-700 leading-relaxed">
+    <slot />
+  </div>
+</div>
+
+<!-- Пример использования в MDX:
+<AnswerCallout>
+  Для IT‑фрилансера с доходом до 2,4 млн ₽ в год выгоднее НПД (4–6% налога). 
+  Если планируешь нанимать сотрудников или оборот выше — регистрируй ИП с кодом 62.01 (УСН 3%).
+</AnswerCallout>
+-->

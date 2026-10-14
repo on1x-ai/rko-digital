@@ -1,0 +1,82 @@
+---
+export interface Props {
+  pros?: string[];
+  cons?: string[];
+}
+
+const { pros, cons } = Astro.props;
+---
+
+<div class="my-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+  <!-- Плюсы -->
+  <div class="bg-green-50 border border-green-200 rounded-xl p-6">
+    <div class="font-bold text-green-800 text-lg mb-4 flex items-center gap-2">
+      <span class="text-2xl">✅</span> Плюсы
+    </div>
+    {pros ? (
+      <ul class="space-y-3">
+        {pros.map((item, idx) => (
+          <li key={idx} class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-green-100 text-green-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+              ✓
+            </div>
+            <span class="text-green-700">{item}</span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <ul class="space-y-3">
+        <slot name="pros" />
+      </ul>
+    )}
+  </div>
+  
+  <!-- Минусы -->
+  <div class="bg-red-50 border border-red-200 rounded-xl p-6">
+    <div class="font-bold text-red-800 text-lg mb-4 flex items-center gap-2">
+      <span class="text-2xl">❌</span> Минусы
+    </div>
+    {cons ? (
+      <ul class="space-y-3">
+        {cons.map((item, idx) => (
+          <li key={idx} class="flex items-start gap-3">
+            <div class="w-6 h-6 rounded-full bg-red-100 text-red-600 flex items-center justify-center flex-shrink-0 mt-0.5">
+              ✗
+            </div>
+            <span class="text-red-700">{item}</span>
+          </li>
+        ))}
+      </ul>
+    ) : (
+      <ul class="space-y-3">
+        <slot name="cons" />
+      </ul>
+    )}
+  </div>
+</div>
+
+<!-- Пример через пропсы:
+<ProsCons
+  pros={[
+    'Бесплатное открытие счёта',
+    'Онлайн за 1 день',
+    'Валютный контроль',
+  ]}
+  cons={[
+    'После льготного периода — платное обслуживание',
+    'Комиссия за снятие наличных выше среднего',
+  ]}
+/>
+
+Или через слоты:
+<ProsCons>
+  <Fragment slot="pros">
+    <li>Бесплатная бухгалтерия для ИП на УСН</li>
+    <li>Интеграция с Upwork и Fiverr</li>
+  </Fragment>
+  <Fragment slot="cons">
+    <li>Лимит на валютные переводы $100k/мес</li>
+    <li>Долгое рассмотрение документов для валютного контроля</li>
+  </Fragment>
+</ProsCons>
+-->

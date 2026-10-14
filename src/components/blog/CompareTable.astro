@@ -1,0 +1,60 @@
+---
+export interface Props {
+  headers?: string[];
+  columns?: string[];
+  rows: (string | { text: string; highlight?: boolean })[][];
+  title?: string;
+  caption?: string;
+}
+
+const { headers, columns, rows, title, caption } = Astro.props;
+const tableHeaders = headers || columns || [];
+---
+
+<div class="my-8 overflow-x-auto rounded-xl border border-gray-200">
+  {title && <div class="bg-gray-50 p-4 border-b border-gray-200">
+    <h3 class="font-bold text-gray-800">{title}</h3>
+  </div>}
+  <table class="w-full border-collapse">
+    {caption && <caption class="text-left p-4 text-gray-500 text-sm border-b">{caption}</caption>}
+    <thead class="bg-gray-50">
+      <tr>
+        {tableHeaders.map((header, idx) => (
+          <th key={idx} class="text-left p-4 font-bold text-gray-700">
+            {header}
+          </th>
+        ))}
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-gray-200">
+      {rows?.map((row, rowIdx) => (
+        <tr key={rowIdx} class="hover:bg-gray-50">
+          {row?.map((cell, cellIdx) => {
+            const isHighlight = typeof cell === 'object' && cell.highlight;
+            const text = typeof cell === 'string' ? cell : cell.text;
+            return (
+              <td
+                key={cellIdx}
+                class={`p-4 ${isHighlight ? 'bg-blue-50 font-bold text-blue-700' : 'text-gray-700'}`}
+              >
+                {text}
+              </td>
+            );
+          })}
+        </tr>
+      ))}
+    </tbody>
+  </table>
+</div>
+
+<!-- Пример:
+<CompareTable
+  headers={['Банк', 'Открытие', 'SWIFT', 'Обслуживание']}
+  rows={[
+    ['Т‑Банк', '1 день', '✅ Да', '0 ₽ первые 2 месяца'],
+    ['Альфа‑Банк', '1–2 дня', '✅ Да', '0 ₽ при обороте до 1 млн ₽'],
+    [{ text: 'Тинькофф Бизнес', highlight: true }, '1 день', '✅ Да', '0 ₽ первые 3 месяца'],
+  ]}
+  caption="Сравнение банков для IT‑фрилансера (данные на октябрь 2026)"
+/>
+-->

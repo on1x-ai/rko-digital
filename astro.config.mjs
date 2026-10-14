@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite';
 
 import sitemap from '@astrojs/sitemap';
 import robots from 'astro-robots-txt';
+import mdx from '@astrojs/mdx';
 
 // https://astro.build/config
 export default defineConfig({
@@ -17,6 +18,7 @@ export default defineConfig({
 
   integrations: [
     sitemap(),
-    robots()
+    robots(),
+    mdx()
   ]
 });

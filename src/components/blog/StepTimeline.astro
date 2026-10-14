@@ -1,0 +1,39 @@
+---
+export interface Props {
+  steps: {
+    title: string;
+    time?: string;
+    description: string;
+  }[];
+}
+
+const { steps } = Astro.props;
+---
+
+<div class="my-8 border-l-4 border-blue-500 pl-8 space-y-8">
+  {steps.map((step, idx) => (
+    <div class="relative">
+      <div class="absolute -left-12 top-0 w-8 h-8 rounded-full bg-blue-500 text-white flex items-center justify-center font-bold">
+        {idx + 1}
+      </div>
+      <div class="font-bold text-gray-900 text-lg">{step.title}</div>
+      {step.time && (
+        <div class="inline-block px-3 py-1 bg-blue-100 text-blue-700 rounded-full text-sm font-medium mt-2">
+          {step.time}
+        </div>
+      )}
+      <div class="text-gray-700 mt-3">{step.description}</div>
+    </div>
+  ))}
+</div>
+
+<!-- Пример:
+<StepTimeline
+  steps={[
+    { title: 'День 0', time: '15 минут', description: 'Выбираешь банк по нашей таблице сравнения' },
+    { title: 'День 1', time: '1–3 дня', description: 'Подаёшь заявку онлайн, прикладываешь паспорт и ИНН' },
+    { title: 'День 2–3', time: 'Банк проверяет', description: 'Могут запросить договоры с заказчиками для валютного контроля' },
+    { title: 'День 4', time: 'Счёт открыт', description: 'Настраиваешь эквайринг и подключаешь бухгалтерию' },
+  ]}
+/>
+-->
