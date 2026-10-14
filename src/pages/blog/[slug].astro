@@ -33,7 +33,7 @@ const post = await getEntry('blog', slug);
 const { Content } = await render(post);
 
 // Вычисляем время чтения
-const readTimeMinutes = readingTime(post.body ?? '');
+const readTimeMinutes = readingTime(post.body ?? '', slug);
 const readTimeDisplay = formatReadingTime(readTimeMinutes);
 ---
 

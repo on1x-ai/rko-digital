@@ -41,7 +41,7 @@ function getCategory(niche) {
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {sortedPosts.map((post) => {
-        const readTimeMinutes = readingTime(post.body);
+        const readTimeMinutes = readingTime(post.body, post.id);
         const readTimeDisplay = formatReadingTime(readTimeMinutes);
         const category = getCategory(post.data.niche);
         
