@@ -1,13 +1,14 @@
 ---
 export interface Props {
+  title?: string;
   items?: string[];
 }
 
-const { items } = Astro.props;
+const { title, items } = Astro.props;
 ---
 
 <div class="my-8 bg-white border border-gray-200 rounded-xl p-6 shadow-sm">
-  <div class="font-bold text-gray-900 text-lg mb-4">📋 Чеклист</div>
+  {title && <div class="font-bold text-gray-900 text-lg mb-4">{title}</div>}
   {items ? (
     <ul class="space-y-3">
       {items.map((item, idx) => (

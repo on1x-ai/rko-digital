@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection } from 'astro:content';
-import { readingTime } from '../../utils/readingTime';
+import { readingTime, formatReadingTime } from '../../utils/readingTime';
 
 export async function getStaticPaths() {
   return [{ params: { slug: 'index' } }];
@@ -41,7 +41,8 @@ function getCategory(niche) {
 
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       {sortedPosts.map((post) => {
-        const readTime = readingTime(post.body);
+        const readTimeMinutes = readingTime(post.body);
+        const readTimeDisplay = formatReadingTime(readTimeMinutes);
         const category = getCategory(post.data.niche);
         
         return (
@@ -53,7 +54,7 @@ function getCategory(niche) {
                     {category}
                   </span>
                   <span class="text-sm text-gray-500">
-                    {readTime} мин
+                    {readTimeDisplay}
                   </span>
                 </div>
                 

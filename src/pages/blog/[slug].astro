@@ -1,7 +1,7 @@
 ---
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import { getCollection, getEntry, render } from 'astro:content';
-import { readingTime } from '../../utils/readingTime';
+import { readingTime, formatReadingTime } from '../../utils/readingTime';
 
 // Импортируем все компоненты блога
 import AnswerCallout from '../../components/blog/AnswerCallout.astro';
@@ -33,7 +33,8 @@ const post = await getEntry('blog', slug);
 const { Content } = await render(post);
 
 // Вычисляем время чтения
-const readTime = readingTime(post.body ?? '');
+const readTimeMinutes = readingTime(post.body ?? '');
+const readTimeDisplay = formatReadingTime(readTimeMinutes);
 ---
 
 <BaseLayout title={post.data.title} description={post.data.description}>
@@ -59,7 +60,7 @@ const readTime = readingTime(post.body ?? '');
           })}
         </time>
         <span class="text-gray-600">•</span>
-        <span class="text-gray-600">{readTime} мин чтения</span>
+        <span class="text-gray-600">{readTimeDisplay}</span>
       </div>
       
       <h1 class="text-4xl font-bold text-gray-900 mb-4">{post.data.title}</h1>
@@ -67,12 +68,13 @@ const readTime = readingTime(post.body ?? '');
       
       <div class="border-t border-b border-gray-200 py-4 mb-6">
         <div class="flex items-center gap-4">
-          <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-            <span class="text-blue-600 font-bold">R</span>
+          <div class="w-10 h-10 bg-gray-100 rounded-full flex items-center justify-center">
+            <span class="text-gray-600 font-bold">
+              {post.data.author.split(' ').map(n => n[0]).join('')}
+            </span>
           </div>
           <div>
-            <div class="font-medium">{post.data.author}</div>
-            <div class="text-sm text-gray-500">Эксперт по банковским услугам</div>
+            <div class="font-medium text-gray-900">{post.data.author}</div>
           </div>
         </div>
       </div>

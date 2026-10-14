@@ -3,67 +3,74 @@ export interface Props {
   steps: {
     title: string;
     description?: string;
-    type?: 'start' | 'process' | 'decision' | 'end';
   }[];
+  variant?: 'horizontal' | 'vertical';
 }
 
-const { steps } = Astro.props;
-
-const typeIcons = {
-  start: '🚀',
-  process: '⚙️',
-  decision: '🤔',
-  end: '✅',
-};
+const { steps, variant = 'horizontal' } = Astro.props;
 ---
 
-<div class="my-8">
-  <div class="hidden md:flex items-center justify-between relative">
-    <!-- Горизонтальная линия -->
-    <div class="absolute top-1/2 left-0 right-0 h-0.5 bg-gray-300 -translate-y-1/2 z-0"></div>
-    
-    {steps.map((step, idx) => (
-      <div class="relative z-10 flex flex-col items-center text-center w-32">
-        <div class="w-12 h-12 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center text-2xl mb-3">
-          {typeIcons[step.type || 'process']}
-        </div>
-        <div class="font-bold text-gray-900">{step.title}</div>
-        {step.description && (
-          <div class="text-sm text-gray-600 mt-2">{step.description}</div>
-        )}
-        {idx < steps.length - 1 && (
-          <div class="absolute top-6 left-full w-16 h-0.5 bg-blue-500"></div>
-        )}
+<div class="my-12">
+  {variant === 'horizontal' ? (
+    <>
+      <div class="hidden md:flex items-center justify-between relative">
+        <!-- Чистая линия-соединитель -->
+        <div class="absolute top-1/2 left-0 right-0 h-px bg-gray-200 -translate-y-1/2 z-0"></div>
+        
+        {steps.map((step, idx) => (
+          <div class="relative z-10 flex flex-col items-center text-center w-32">
+            <div class="w-12 h-12 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center text-lg font-bold text-gray-800 mb-3">
+              {idx + 1}
+            </div>
+            <div class="font-bold text-gray-900 mb-1">{step.title}</div>
+            {step.description && (
+              <div class="text-sm text-gray-600 px-2">{step.description}</div>
+            )}
+          </div>
+        ))}
       </div>
-    ))}
-  </div>
-  
-  <!-- Мобильная версия -->
-  <div class="md:hidden space-y-6">
-    {steps.map((step, idx) => (
-      <div class="flex items-start gap-4">
-        <div class="w-10 h-10 rounded-full bg-white border-4 border-blue-500 flex items-center justify-center text-xl flex-shrink-0">
-          {typeIcons[step.type || 'process']}
-        </div>
-        <div>
-          <div class="font-bold text-gray-900">{step.title}</div>
+      
+      <!-- Мобильная версия -->
+      <div class="md:hidden space-y-8">
+        {steps.map((step, idx) => (
+          <div class="flex items-start gap-4">
+            <div class="w-10 h-10 rounded-full bg-white border-2 border-gray-300 flex items-center justify-center text-base font-bold text-gray-800 flex-shrink-0">
+              {idx + 1}
+            </div>
+            <div class="flex-1">
+              <div class="font-bold text-gray-900 mb-1">{step.title}</div>
+              {step.description && (
+                <div class="text-gray-600 text-sm">{step.description}</div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </>
+  ) : (
+    <div class="border-l-2 border-gray-200 pl-6 ml-2 space-y-10">
+      {steps.map((step, idx) => (
+        <div class="relative">
+          <div class="absolute -left-8 top-0 w-6 h-6 rounded-full bg-white border-2 border-gray-800 flex items-center justify-center text-sm font-bold text-gray-800">
+            {idx + 1}
+          </div>
+          <div class="font-bold text-gray-900 text-lg mb-1">{step.title}</div>
           {step.description && (
-            <div class="text-gray-600 mt-1">{step.description}</div>
+            <div class="text-gray-700">{step.description}</div>
           )}
         </div>
-      </div>
-    ))}
-  </div>
+      ))}
+    </div>
+  )}
 </div>
 
 <!-- Пример:
 <FlowDiagram
   steps={[
-    { title: 'Выбор формы', type: 'start', description: 'НПД или ИП?' },
-    { title: 'ОКВЭД 62.01', type: 'process', description: 'Для льготной УСН' },
-    { title: 'Открытие счёта', type: 'process', description: 'Онлайн за 1 день' },
-    { title: 'Валютный контроль', type: 'decision', description: 'Если зарубежные клиенты' },
-    { title: 'Первый платёж', type: 'end', description: '✅ Готово' },
+    { title: 'Выбор формы', description: 'НПД или ИП?' },
+    { title: 'ОКВЭД 62.01', description: 'Для льготной УСН' },
+    { title: 'Открытие счёта', description: 'Онлайн за 1 день' },
+    { title: 'Валютный контроль', description: 'Если зарубежные клиенты' },
+    { title: 'Первый платёж', description: 'Готово' },
   ]}
-/>
--->
+/>-->
