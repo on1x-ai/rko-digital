@@ -24,7 +24,7 @@ const faqItems = nichesData.niches[0].faq;
       </p>
       <div class="flex flex-col sm:flex-row gap-4 justify-center">
         <CTAButton href="/#consult" variant="primary">
-          Подобрать банк
+          Подобрать банк под мой бизнес
         </CTAButton>
         <CTAButton href="/comparison/" variant="outline">
           Сравнить банки
@@ -126,10 +126,10 @@ const faqItems = nichesData.niches[0].faq;
         Цифры, которые говорят сами за себя
       </h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">
-        <Metric value="95%" label="Клиентов открывают счёт онлайн" />
-        <Metric value="0 ₽" label="На открытие счёта" />
+        <Metric value="12+" label="Банков в подборке" />
+        <Metric value="15–20 мин" label="Заявка онлайн" />
         <Metric value="24/7" label="Поддержка в чате" />
-        <Metric value="1 день" label="Среднее время открытия" />
+        <Metric value="1–3 дня" label="Среднее время открытия счёта" />
       </div>
     </section>
 
@@ -137,89 +137,127 @@ const faqItems = nichesData.niches[0].faq;
 
     <section class="mb-16" id="consult">
       <div class="bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-12">
-        <div class="max-w-2xl mx-auto">
+        <div class="max-w-4xl mx-auto">
           <h2 class="text-3xl font-bold text-gray-900 mb-4 text-center">
             Нужна помощь с выбором банка?
           </h2>
           <p class="text-gray-700 mb-8 text-center">
-            Оставьте заявку, и мы бесплатно подберём для вас расчётный счёт с эквайрингом и валютным контролем.
+            Есть два варианта получить персонализированную подборку банка под ваш бизнес:
           </p>
-          <form
-            class="space-y-6"
-            action="https://formspree.io/f/your-form-id"
-            method="POST"
-          >
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div>
-                <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
-                  Имя
-                </label>
-                <input
-                  type="text"
-                  id="name"
-                  name="name"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                  placeholder="Алексей"
-                />
+          
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mb-10">
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                  <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"/>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Telegram-бот — ответ сразу</h3>
               </div>
-              <div>
-                <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
-                  Email
-                </label>
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  required
-                  class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                  placeholder="alexey@example.com"
-                />
-              </div>
-            </div>
-            <div>
-              <label for="niche" class="block text-sm font-medium text-gray-700 mb-2">
-                Ваша ниша
-              </label>
-              <select
-                id="niche"
-                name="niche"
-                required
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-              >
-                <option value="" disabled selected>Выберите направление</option>
-                <option value="it-specialisty">IT‑специалист / разработчик</option>
-                <option value="freelancers">Фрилансер</option>
-                <option value="startup">Стартап</option>
-                <option value="online-school">Онлайн‑школа</option>
-                <option value="ecommerce">E‑commerce</option>
-                <option value="digital-agency">Digital‑агентство</option>
-              </select>
-            </div>
-            <div>
-              <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
-                Комментарий (необязательно)
-              </label>
-              <textarea
-                id="message"
-                name="message"
-                rows={4}
-                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
-                placeholder="Например, нужен эквайринг для приёма платежей от учеников..."
-              />
-            </div>
-            <div class="text-center">
-              <button
-                type="submit"
-                class="px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                Отправить заявку
-              </button>
-              <p class="text-sm text-gray-500 mt-4">
-                Нажимая кнопку, вы соглашаетесь с <a href="/policy/" class="text-blue-600 hover:underline">Политикой конфиденциальности</a>.
+              <p class="text-gray-600 mb-6">
+                Бот задаст 5–7 вопросов о сфере, обороте, валюте и эквайринге и подскажет подходящий банк. Почту оставлять не нужно.
               </p>
+              <a 
+                href="https://t.me/rko_digital_bot" 
+                target="_blank"
+                rel="noopener noreferrer"
+                class="inline-flex items-center justify-center px-6 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors w-full text-center"
+              >
+                <svg class="w-5 h-5 mr-2" fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.98-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.06-.2-.07-.06-.17-.04-.24-.02-.1.02-1.79 1.14-5.06 3.35-.48.33-.92.49-1.31.48-.43-.01-1.27-.25-1.89-.45-.76-.25-1.36-.38-1.31-.81.03-.24.33-.48.9-.73 3.57-1.55 5.94-2.58 7.14-3.18 3.33-1.57 4.03-1.84 4.48-1.94.1-.02.32-.04.46.03.11.06.18.14.21.27.02.1.04.32.02.46z"/>
+                </svg>
+                Открыть бота в Telegram
+              </a>
             </div>
-          </form>
+            
+            <div class="bg-white rounded-2xl p-6 md:p-8 shadow-lg border border-gray-100">
+              <div class="flex items-center mb-4">
+                <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                  <svg class="w-6 h-6 text-blue-600" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                  </svg>
+                </div>
+                <h3 class="text-xl font-bold text-gray-900">Или оставьте заявку</h3>
+              </div>
+              <p class="text-gray-600 mb-6">
+                Напишем лично и поможем выбрать счёт. Ответим в течение 1 рабочего дня.
+              </p>
+              
+              <form
+                class="space-y-4"
+                action="https://formspree.io/f/your-form-id"
+                method="POST"
+              >
+                <div>
+                  <label for="name" class="block text-sm font-medium text-gray-700 mb-2">
+                    Имя
+                  </label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    placeholder="Алексей"
+                  />
+                </div>
+                <div>
+                  <label for="email" class="block text-sm font-medium text-gray-700 mb-2">
+                    Email
+                  </label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    placeholder="alexey@example.com"
+                  />
+                </div>
+                <div>
+                  <label for="niche" class="block text-sm font-medium text-gray-700 mb-2">
+                    Ваша ниша
+                  </label>
+                  <select
+                    id="niche"
+                    name="niche"
+                    required
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                  >
+                    <option value="" disabled selected>Выберите направление</option>
+                    <option value="it-specialisty">IT‑специалист / разработчик</option>
+                    <option value="freelancers">Фрилансер</option>
+                    <option value="startup">Стартап</option>
+                    <option value="online-school">Онлайн‑школа</option>
+                    <option value="ecommerce">E‑commerce</option>
+                    <option value="digital-agency">Digital‑агентство</option>
+                  </select>
+                </div>
+                <div>
+                  <label for="message" class="block text-sm font-medium text-gray-700 mb-2">
+                    Комментарий (необязательно)
+                  </label>
+                  <textarea
+                    id="message"
+                    name="message"
+                    rows={3}
+                    class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 outline-none"
+                    placeholder="Например, нужен эквайринг для приёма платежей от учеников..."
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="w-full px-8 py-3 bg-blue-600 text-white font-medium rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  Отправить заявку
+                </button>
+                <p class="text-xs text-gray-500 text-center">
+                  Нажимая кнопку, вы соглашаетесь с <a href="/policy/" class="text-blue-600 hover:underline">Политикой конфиденциальности</a>.
+                </p>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
     </section>
