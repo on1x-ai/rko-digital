@@ -98,6 +98,34 @@ code, pre, .mono {
   font-size: 13px;
 }
 
+/* Глобальные стили для предотвращения horizontal overflow */
+* {
+  box-sizing: border-box;
+}
+
+img, video, canvas {
+  max-width: 100%;
+  height: auto;
+}
+
+table {
+  border-collapse: collapse;
+  width: 100%;
+}
+
+/* Утилиты для предотвращения overflow */
+.min-w-0 {
+  min-width: 0;
+}
+
+.overflow-wrap-anywhere {
+  overflow-wrap: anywhere;
+}
+
+.hyphens-auto {
+  hyphens: auto;
+}
+
 .tabular-nums {
   font-variant-numeric: tabular-nums;
 }

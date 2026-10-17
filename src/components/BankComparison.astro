@@ -9,8 +9,8 @@ export interface Props {
 const { banks = banksData.banks } = Astro.props;
 ---
 
-<div class="overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
-  <table class="w-full border-collapse">
+<div class="hidden md:block overflow-x-auto rounded-2xl border border-gray-200 bg-white shadow-lg">
+  <table class="w-full border-collapse min-w-[768px] md:min-w-0">
     <thead>
       <tr class="border-b border-gray-300 bg-gray-50">
         <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Банк</th>
@@ -85,9 +85,9 @@ const { banks = banksData.banks } = Astro.props;
 </div>
 
 <!-- Мобильная версия -->
-<div class="hidden max-sm:block space-y-6">
-  {banks.map((bank) => (
-    <div class="bg-white border border-gray-200 rounded-2xl p-6 shadow">
+<div class="block md:hidden space-y-4 sm:space-y-6">
+    {banks.map((bank) => (
+      <div class="bg-white border border-gray-200 rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow min-w-0 overflow-hidden">
       <div class="flex items-center justify-between mb-4">
         <div class="flex items-center gap-3">
           <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg">
@@ -104,30 +104,30 @@ const { banks = banksData.banks } = Astro.props;
         </div>
       </div>
 
-      <div class="grid grid-cols-2 gap-4 mb-6">
-        <div>
+      <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
+        <div class="min-w-0">
           <div class="text-xs text-gray-500 mb-1">Срок одобрения</div>
-          <div class="text-lg font-bold text-gray-900 whitespace-nowrap">
+          <div class="text-base sm:text-lg font-bold text-gray-900 break-words hyphens-auto">
             {bank.openingTime}
           </div>
-          <div class="text-sm text-gray-600 break-words">{bank.openingCost}</div>
+          <div class="text-xs sm:text-sm text-gray-600 break-words">{bank.openingCost}</div>
         </div>
-        <div>
+        <div class="min-w-0">
           <div class="text-xs text-gray-500 mb-1">Обслуживание</div>
-          <div class="text-lg font-bold text-gray-900 whitespace-nowrap">
+          <div class="text-base sm:text-lg font-bold text-gray-900 break-words hyphens-auto">
             {bank.monthlyFee.start}
           </div>
-          <div class="text-sm text-gray-600 break-words">далее {bank.monthlyFee.standard}</div>
+          <div class="text-xs sm:text-sm text-gray-600 break-words">далее {bank.monthlyFee.standard}</div>
         </div>
-        <div>
+        <div class="min-w-0">
           <div class="text-xs text-gray-500 mb-1">Платежи</div>
-          <div class="text-lg font-bold text-gray-900 whitespace-nowrap break-words">
+          <div class="text-base sm:text-lg font-bold text-gray-900 break-words hyphens-auto">
             {bank.perPayment}
           </div>
         </div>
-        <div>
+        <div class="min-w-0">
           <div class="text-xs text-gray-500 mb-1">Валюта</div>
-          <div class="text-lg font-bold text-gray-900 whitespace-nowrap">
+          <div class="text-base sm:text-lg font-bold text-gray-900 break-words hyphens-auto">
             {bank.currencyControl ? 'SWIFT' : '₽'}
           </div>
         </div>

@@ -14,11 +14,11 @@ const formattedValue = format === 'currency'
     : value;
 ---
 
-<div class="flex flex-col items-center text-center">
-  <div class="text-3xl sm:text-4xl md:text-5xl font-display font-bold tabular-nums text-[var(--text-primary)] mb-2 md:mb-3">
+<div class="flex flex-col items-center text-center min-w-0">
+  <div class="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-display font-bold tabular-nums text-blue-700 mb-1 sm:mb-2 md:mb-3 break-words hyphens-auto px-1">
     {formattedValue}
   </div>
-  <div class="text-xs sm:text-sm text-[var(--text-secondary)] font-text font-medium px-2">
+  <div class="text-xs sm:text-sm text-gray-600 font-text font-medium px-2 break-words hyphens-auto">
     {label}
   </div>
 </div>
