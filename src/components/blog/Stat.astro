@@ -9,8 +9,8 @@ const { value, label, hint } = Astro.props;
 ---
 
 <div class="text-center p-4 bg-white border border-gray-200 rounded-xl shadow-sm">
-  <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2">{value}</div>
-  <div class="text-gray-700 font-medium">{label}</div>
+  <div class="text-3xl md:text-4xl font-bold text-gray-900 mb-2 whitespace-nowrap">{value}</div>
+  <div class="text-gray-700 font-medium text-sm sm:text-base break-words">{label}</div>
   {hint && <div class="text-sm text-gray-500 mt-2">{hint}</div>}
 </div>
 

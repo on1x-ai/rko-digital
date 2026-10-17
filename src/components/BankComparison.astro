@@ -106,28 +106,28 @@ const { banks = banksData.banks } = Astro.props;
 
       <div class="grid grid-cols-2 gap-4 mb-6">
         <div>
-          <div class="text-xs text-gray-500">Срок одобрения</div>
-          <div class="text-lg font-bold text-gray-900">
+          <div class="text-xs text-gray-500 mb-1">Срок одобрения</div>
+          <div class="text-lg font-bold text-gray-900 whitespace-nowrap">
             {bank.openingTime}
           </div>
-          <div class="text-sm text-gray-600">{bank.openingCost}</div>
+          <div class="text-sm text-gray-600 break-words">{bank.openingCost}</div>
         </div>
         <div>
-          <div class="text-xs text-gray-500">Обслуживание</div>
-          <div class="text-lg font-bold text-gray-900">
+          <div class="text-xs text-gray-500 mb-1">Обслуживание</div>
+          <div class="text-lg font-bold text-gray-900 whitespace-nowrap">
             {bank.monthlyFee.start}
           </div>
-          <div class="text-sm text-gray-600">далее {bank.monthlyFee.standard}</div>
+          <div class="text-sm text-gray-600 break-words">далее {bank.monthlyFee.standard}</div>
         </div>
         <div>
-          <div class="text-xs text-gray-500">Платежи</div>
-          <div class="text-lg font-bold text-gray-900">
+          <div class="text-xs text-gray-500 mb-1">Платежи</div>
+          <div class="text-lg font-bold text-gray-900 whitespace-nowrap break-words">
             {bank.perPayment}
           </div>
         </div>
         <div>
-          <div class="text-xs text-gray-500">Валюта</div>
-          <div class="text-lg font-bold text-gray-900">
+          <div class="text-xs text-gray-500 mb-1">Валюта</div>
+          <div class="text-lg font-bold text-gray-900 whitespace-nowrap">
             {bank.currencyControl ? 'SWIFT' : '₽'}
           </div>
         </div>
