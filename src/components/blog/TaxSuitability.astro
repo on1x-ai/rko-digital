@@ -1,0 +1,79 @@
+---
+export interface Props {
+  title: string;
+  type: 'npd' | 'ip';
+  suitable: string[];
+  notSuitable: string[];
+  conclusion: string;
+}
+
+const { title, type, suitable, notSuitable, conclusion } = Astro.props;
+---
+
+<div class="bg-white border border-gray-200 rounded-xl p-6 my-6">
+  <h3 class="font-bold text-gray-900 text-xl mb-6">{title}</h3>
+  
+  <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-6 h-6 rounded-full bg-green-100 flex items-center justify-center">
+          <span class="text-green-600 font-bold">✓</span>
+        </div>
+        <h4 class="font-bold text-gray-900">Подходит</h4>
+      </div>
+      <ul class="space-y-3">
+        {suitable.map((item, idx) => (
+          <li key={idx} class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-green-50 border border-green-100 flex items-center justify-center text-green-600 text-xs font-bold mt-0.5 flex-shrink-0">
+              ✓
+            </div>
+            <span class="text-gray-700">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+    
+    <div>
+      <div class="flex items-center gap-2 mb-4">
+        <div class="w-6 h-6 rounded-full bg-red-100 flex items-center justify-center">
+          <span class="text-red-600 font-bold">✗</span>
+        </div>
+        <h4 class="font-bold text-gray-900">Не подходит</h4>
+      </div>
+      <ul class="space-y-3">
+        {notSuitable.map((item, idx) => (
+          <li key={idx} class="flex items-start gap-3">
+            <div class="w-5 h-5 rounded-full bg-red-50 border border-red-100 flex items-center justify-center text-red-600 text-xs font-bold mt-0.5 flex-shrink-0">
+              ✗
+            </div>
+            <span class="text-gray-700">{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </div>
+  
+  <div class="mt-8 pt-6 border-t border-gray-200">
+    <div class="text-gray-700">{conclusion}</div>
+  </div>
+</div>
+
+<!-- Пример:
+<TaxSuitability
+  title="Кому подходит НПД"
+  type="npd"
+  suitable={[
+    'Начинающие фрилансеры (доход до 200 000 ₽ в месяц)',
+    'Специалисты на частичной занятости (есть основная работа)',
+    'Те, кто работает только с российскими заказчиками',
+    'Кто не хочет вести бухгалтерию'
+  ]}
+  notSuitable={[
+    'Доход больше 2,4 млн ₽ в год (лимит)',
+    'Работаете с иностранными заказчиками (ставка 6% вместо 4%)',
+    'Планируете нанимать помощников',
+    'Нужны валютные счета и SWIFT'
+  ]}
+  conclusion="На практике НПД — это как лайт-версия предпринимательства. Зарегистрировался в приложении за 5 минут, платишь налоги автоматически при каждом чеке, и никакой отчётности."
+/>
+-->

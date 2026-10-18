@@ -17,6 +17,11 @@ import Callout from '../../components/blog/Callout.astro';
 import Checklist from '../../components/blog/Checklist.astro';
 import CtaBlock from '../../components/blog/CtaBlock.astro';
 import ProsCons from '../../components/blog/ProsCons.astro';
+import ProtectionGrid from '../../components/blog/ProtectionGrid.astro';
+import TaxExamples from '../../components/blog/TaxExamples.astro';
+import TaxSuitability from '../../components/blog/TaxSuitability.astro';
+import DocumentGroups from '../../components/blog/DocumentGroups.astro';
+import BankCriteria from '../../components/blog/BankCriteria.astro';
 
 export async function getStaticPaths() {
   const blogPosts = await getCollection('blog');
@@ -96,6 +101,11 @@ const readTimeDisplay = formatReadingTime(readTimeMinutes);
           Checklist,
           CtaBlock,
           ProsCons,
+          ProtectionGrid,
+          TaxExamples,
+          TaxSuitability,
+          DocumentGroups,
+          BankCriteria,
         }}
       />
     </div>

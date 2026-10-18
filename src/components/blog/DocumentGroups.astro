@@ -1,0 +1,60 @@
+---
+export interface Props {
+  groups: {
+    title: string;
+    items: string[];
+  }[];
+}
+
+const { groups } = Astro.props;
+---
+
+<div class="my-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {groups.map((group, groupIdx) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+        <h3 class="font-bold text-gray-900 text-lg mb-4">{group.title}</h3>
+        
+        <ul class="space-y-3">
+          {group.items.map((item, itemIdx) => (
+            <li key={itemIdx} class="flex items-start gap-3">
+              <div class="w-6 h-6 rounded-full bg-gray-100 flex items-center justify-center text-gray-700 text-sm font-bold mt-0.5 flex-shrink-0">
+                {groupIdx * 3 + itemIdx + 1}
+              </div>
+              <span class="text-gray-700">{item}</span>
+            </li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- Пример:
+<DocumentGroups
+  groups={[
+    {
+      title: 'Для всех сумм:',
+      items: [
+        'Договор/контракт на английском языке',
+        'Invoice/счёт с детализацией услуг и суммой',
+        'Паспорт владельца счёта (скан)'
+      ]
+    },
+    {
+      title: 'Для сумм от $10 000 добавляем:',
+      items: [
+        'Техническое задание (ТЗ) или спецификация работ',
+        'Резюме исполнителя (для IT-услуг)',
+        'Лицензии/сертификаты (если требуются)'
+      ]
+    },
+    {
+      title: 'Для регулярных платежей:',
+      items: [
+        'График платежей как приложение к договору',
+        'Акты выполненных работ за каждый период'
+      ]
+    }
+  ]}
+/>-->

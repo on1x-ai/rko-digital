@@ -149,3 +149,19 @@ table {
   .rounded-input { border-radius: var(--radius-input); }
   .rounded-pill { border-radius: var(--radius-pill); }
 }
+
+/* Отступы для заголовков в статьях блога */
+.prose h2 {
+  margin-top: 2.5rem !important;
+  margin-bottom: 1.5rem !important;
+}
+
+.prose h3 {
+  margin-top: 2rem !important;
+  margin-bottom: 1rem !important;
+}
+
+.prose h4 {
+  margin-top: 1.5rem !important;
+  margin-bottom: 0.75rem !important;
+}

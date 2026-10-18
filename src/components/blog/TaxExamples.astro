@@ -1,0 +1,74 @@
+---
+export interface Props {
+  examples: {
+    title: string;
+    income: string;
+    npd?: string;
+    ip: string;
+    conclusion: string;
+  }[];
+}
+
+const { examples } = Astro.props;
+---
+
+<div class="my-8">
+  <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+    {examples.map((example, idx) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-6 hover:shadow-md transition-shadow duration-200">
+        <h3 class="font-bold text-gray-900 text-lg mb-4">{example.title}</h3>
+        
+        <div class="space-y-4">
+          <div>
+            <div class="text-sm text-gray-500 mb-1">Доход</div>
+            <div class="font-bold text-gray-900">{example.income}</div>
+          </div>
+          
+          <div class="grid grid-cols-2 gap-4">
+            <div>
+              <div class="text-sm text-gray-500 mb-1">НПД</div>
+              <div class={`font-bold ${example.npd ? 'text-gray-900' : 'text-gray-400'}`}>
+                {example.npd || 'Недоступно'}
+              </div>
+            </div>
+            <div>
+              <div class="text-sm text-gray-500 mb-1">ИП</div>
+              <div class="font-bold text-gray-900">{example.ip}</div>
+            </div>
+          </div>
+          
+          <div class="pt-4 border-t border-gray-200">
+            <div class="text-sm text-gray-500 mb-1">Вывод</div>
+            <div class="font-bold text-gray-900">{example.conclusion}</div>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- Пример:
+<TaxExamples
+  examples={[
+    { 
+      title: 'Фрилансер с российскими заказчиками', 
+      income: '150 000 ₽/мес × 12 = 1,8 млн ₽/год',
+      npd: '1,8 млн × 4% = 72 000 ₽',
+      ip: '1,8 млн × 3% + 36 238 ₽ = 90 238 ₽',
+      conclusion: 'НПД выгоднее на 18 238 ₽'
+    },
+    { 
+      title: 'Разработчик с зарубежными клиентами', 
+      income: '300 000 ₽/мес × 12 = 3,6 млн ₽/год',
+      ip: '108 000 + 36 238 + 33 000 = 177 238 ₽',
+      conclusion: 'Только ИП, но ставка 3% вместо 6% экономит 108 000 ₽'
+    },
+    { 
+      title: 'Начинающий специалист', 
+      income: '80 000 ₽/мес × 12 = 960 000 ₽/год',
+      npd: '960 000 × 4% = 38 400 ₽',
+      ip: '57 600 + 36 238 = 93 838 ₽',
+      conclusion: 'НПД экономит 55 438 ₽ в год'
+    },
+  ]}
+/>-->

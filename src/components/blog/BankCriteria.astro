@@ -1,0 +1,68 @@
+---
+export interface Props {
+  mandatory: {
+    title: string;
+    description: string;
+  }[];
+  important: {
+    title: string;
+    description: string;
+  }[];
+}
+
+const { mandatory, important } = Astro.props;
+---
+
+<div class="my-8">
+  <div class="mb-10">
+    <h3 class="font-bold text-gray-900 text-xl mb-6">Обязательные критерии:</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {mandatory.map((item, idx) => (
+        <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow duration-200">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-8 h-8 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold text-sm flex-shrink-0">
+              {idx + 1}
+            </div>
+            <h4 class="font-bold text-gray-900">{item.title}</h4>
+          </div>
+          <p class="text-gray-600 text-sm pl-11">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+  
+  <div>
+    <h3 class="font-bold text-gray-900 text-xl mb-6">Важные, но не обязательные:</h3>
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      {important.map((item, idx) => (
+        <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow duration-200">
+          <div class="flex items-start gap-3 mb-3">
+            <div class="w-8 h-8 rounded-full bg-gray-50 border border-gray-100 flex items-center justify-center text-gray-600 font-bold text-sm flex-shrink-0">
+              {mandatory.length + idx + 1}
+            </div>
+            <h4 class="font-bold text-gray-900">{item.title}</h4>
+          </div>
+          <p class="text-gray-600 text-sm pl-11">{item.description}</p>
+        </div>
+      ))}
+    </div>
+  </div>
+</div>
+
+<!-- Пример:
+<BankCriteria
+  mandatory={[
+    { title: 'Упрощённый валютный контроль', description: 'Возможность подтверждать переводы онлайн без визита в офис' },
+    { title: 'Низкая комиссия за SWIFT', description: 'От 19 до 50 рублей за входящий перевод' },
+    { title: 'Онлайн-открытие счёта', description: 'Без посещения отделения, за 1 день' },
+    { title: 'Мобильное приложение', description: 'С полным функционалом для управления счётом' },
+    { title: 'Поддержка 24/7', description: 'Особенно важна для работы с разными часовыми поясами' },
+  ]}
+  important={[
+    { title: 'Процент на остаток', description: 'От 3% до 7% годовых на свободные средства' },
+    { title: 'Интеграции с платформами', description: 'Upwork, PayPal, фриланс-биржи' },
+    { title: 'Бесплатный период', description: '2–6 месяцев для тестирования банка' },
+    { title: 'Кэшбэк за бизнес-расходы', description: 'Возврат процента за офис, оборудование, софт' },
+    { title: 'API для автоматизации', description: 'Если ведёшь несколько проектов одновременно' },
+  ]}
+/>-->

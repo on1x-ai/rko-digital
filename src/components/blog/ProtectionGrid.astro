@@ -1,0 +1,38 @@
+---
+export interface Props {
+  items: {
+    title: string;
+    description: string;
+  }[];
+}
+
+const { items } = Astro.props;
+---
+
+<div class="my-8">
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+    {items.map((item, idx) => (
+      <div class="bg-white border border-gray-200 rounded-xl p-5 hover:shadow-md transition-shadow duration-200">
+        <div class="flex items-start gap-4">
+          <div class="w-10 h-10 rounded-full bg-blue-50 border border-blue-100 flex items-center justify-center text-blue-600 font-bold text-lg flex-shrink-0">
+            {idx + 1}
+          </div>
+          <div class="flex-1">
+            <h3 class="font-bold text-gray-900 mb-2">{item.title}</h3>
+            <p class="text-gray-600 text-sm">{item.description}</p>
+          </div>
+        </div>
+      </div>
+    ))}
+  </div>
+</div>
+
+<!-- Пример:
+<ProtectionGrid
+  items={[
+    { title: 'Веди документацию', description: 'На каждый платёж должен быть договор, акт или счёт' },
+    { title: 'Объясняй транзакции', description: 'Если получаешь крупный перевод от физлица — будь готов показать договор займа' },
+    { title: 'Обновляй выписки', description: 'Раз в квартал заказывай свежую выписку из ЕГРЮЛ' },
+    { title: 'Следи за ОКВЭДами', description: 'Если меняешь направление бизнеса — вовремя вноси изменения' },
+  ]}
+/>-->
