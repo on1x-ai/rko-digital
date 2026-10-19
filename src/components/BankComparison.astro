@@ -17,7 +17,7 @@ const { banks = banksData.banks } = Astro.props;
         <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Срок одобрения</th>
         <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Обслуживание</th>
         <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Платежи / Снятие</th>
-        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Валюта / SWIFT</th>
+        <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Для кого</th>
         <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm">Плюшки</th>
         <th class="text-left py-4 px-6 text-gray-700 font-semibold uppercase text-sm"></th>
       </tr>
@@ -33,16 +33,17 @@ const { banks = banksData.banks } = Astro.props;
 <div>
                  <div class="font-bold text-gray-900">{bank.name}</div>
                  <div class="text-sm text-gray-500">{bank.bestFor}</div>
-                 {(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
-                   <div class="mt-1">
-                     <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + РКО</span>
-                   </div>
-                 )}
-                 <div class="flex items-center gap-1 mt-1">
-                   <span class="text-yellow-500">★</span>
-                   <span class="font-medium text-gray-700">{bank.rating > 0 ? bank.rating : '—'}</span>
-                   <span class="text-gray-400 text-sm">({bank.reviewCount > 0 ? bank.reviewCount : '—'})</span>
-                 </div>
+{(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
+                  <div class="mt-1">
+                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + счёт</span>
+                  </div>
+                )}
+                {(bank.slug === 'psb-opening') && (
+                  <div class="mt-1">
+                    <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full">Открытие счёта</span>
+                  </div>
+                )}
+
                </div>
             </div>
           </td>
@@ -59,12 +60,7 @@ const { banks = banksData.banks } = Astro.props;
             <div class="text-sm text-gray-500">снятие {bank.cashWithdrawal}</div>
           </td>
           <td class="py-4 px-6">
-            <div class="text-gray-900 font-bold">
-              {bank.currencyControl ? 'SWIFT' : '₽'}
-            </div>
-            <div class="text-sm text-gray-500">
-              {bank.swift ? 'Валютный контроль' : 'Только рубль'}
-            </div>
+            <div class="text-gray-900 font-bold">{bank.bestFor}</div>
           </td>
           <td class="py-4 px-6">
             <div class="space-y-1">
@@ -101,17 +97,19 @@ const { banks = banksData.banks } = Astro.props;
 <div>
              <div class="font-bold text-gray-900">{bank.name}</div>
              <div class="text-sm text-gray-500">{bank.bestFor}</div>
-             {(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
-               <div class="mt-1">
-                 <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + РКО</span>
-               </div>
-             )}
+{(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
+                <div class="mt-1">
+                  <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + счёт</span>
+                </div>
+              )}
+              {(bank.slug === 'psb-opening') && (
+                <div class="mt-1">
+                  <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full">Открытие счёта</span>
+                </div>
+              )}
            </div>
         </div>
-<div class="text-right">
-           <div class="text-gray-900 font-bold">{bank.rating > 0 ? bank.rating : '—'}</div>
-           <div class="text-xs text-gray-500">{bank.reviewCount > 0 ? bank.reviewCount + ' отзывов' : '—'}</div>
-         </div>
+
       </div>
 
       <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
@@ -136,9 +134,9 @@ const { banks = banksData.banks } = Astro.props;
           </div>
         </div>
         <div class="min-w-0">
-          <div class="text-xs text-gray-500 mb-1">Валюта</div>
+          <div class="text-xs text-gray-500 mb-1">Для кого</div>
           <div class="text-base sm:text-lg font-bold text-gray-900 break-words hyphens-auto">
-            {bank.currencyControl ? 'SWIFT' : '₽'}
+            {bank.bestFor}
           </div>
         </div>
       </div>
