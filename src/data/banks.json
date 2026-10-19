@@ -3,6 +3,7 @@
     {
       "name": "Точка",
       "slug": "tochka",
+      "subtitle": "Счёт для ИП и небольшого digital-бизнеса",
       "partnerLink": "https://trk.ppdu.ru/click/L7RmqL2g?erid=2SDnjdABGBD",
       "openingTime": "1 день",
       "openingCost": "открытие 0 ₽",
@@ -26,6 +27,7 @@
     {
       "name": "Альфа-Банк",
       "slug": "alfa-rko",
+      "subtitle": "Только расчётный счёт",
       "partnerLink": "https://go.leadgid.ru/aff_c?aff_id=155793&offer_id=5289&p=adnetwork",
       "openingTime": "1 день",
       "openingCost": "0 ₽",
@@ -49,6 +51,7 @@
     {
       "name": "Альфа-Банк",
       "slug": "alfa-regbiz",
+      "subtitle": "Регистрация бизнеса + счёт",
       "partnerLink": "https://trk.ppdu.ru/click/8FDG8LXT?erid=2SDnjeEA46e",
       "openingTime": "зависит от регистрации",
       "openingCost": "счёт онлайн",
@@ -72,6 +75,7 @@
     {
       "name": "ВТБ",
       "slug": "vtb-regbiz",
+      "subtitle": "Регистрация бизнеса + счёт",
       "partnerLink": "https://trk.ppdu.ru/click/SpRfgWha?erid=Kra23bNL5",
       "openingTime": "1–2 дня",
       "openingCost": "с учётом регистрации",
@@ -95,6 +99,7 @@
     {
       "name": "ПСБ (Промсвязьбанк)",
       "slug": "psb-activation",
+      "subtitle": "Расчётный счёт",
       "partnerLink": "https://trk.ppdu.ru/click/agjLg6LF?erid=Kra23mn2h",
       "openingTime": "1–2 дня",
       "openingCost": "0 ₽",
@@ -118,6 +123,7 @@
     {
       "name": "ПСБ (Промсвязьбанк)",
       "slug": "psb-opening",
+      "subtitle": "Открытие расчётного счёта",
       "partnerLink": "https://go.leadgid.ru/aff_c?aff_id=155793&offer_id=7029&p=adnetwork",
       "openingTime": "1–2 дня",
       "openingCost": "0 ₽",
@@ -141,6 +147,7 @@
     {
       "name": "Ак Барс Банк",
       "slug": "ak-bars",
+      "subtitle": "Счёт для ИП и ООО",
       "partnerLink": "https://trk.ppdu.ru/click/DEkn7EXf?erid=2SDnjecx1YU",
       "openingTime": "1–2 дня",
       "openingCost": "0 ₽",
@@ -164,6 +171,7 @@
     {
       "name": "Банк Санкт-Петербург",
       "slug": "bspb",
+      "subtitle": "РКО для бизнеса",
       "partnerLink": "https://trk.ppdu.ru/click/U8RDyGWj?erid=2SDnjeLA2cx",
       "openingTime": "1–3 дня",
       "openingCost": "0 ₽",
@@ -187,6 +195,7 @@
     {
       "name": "Локо-Банк",
       "slug": "loko",
+      "subtitle": "Счёт для малого бизнеса и ИП",
       "partnerLink": "https://trk.ppdu.ru/click/A9KwCptP?erid=Kra23ute7",
       "openingTime": "1 день",
       "openingCost": "0 ₽",

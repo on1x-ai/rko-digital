@@ -31,20 +31,20 @@ const { banks = banksData.banks } = Astro.props;
                 {bank.name.charAt(0)}
               </div>
 <div>
-                 <div class="font-bold text-gray-900">{bank.name}</div>
-                 <div class="text-sm text-gray-500">{bank.bestFor}</div>
+                  <div class="font-bold text-gray-900">{bank.name}</div>
+                  <div class="text-sm text-gray-500">{bank.subtitle}</div>
 {(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
-                  <div class="mt-1">
-                    <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + счёт</span>
-                  </div>
-                )}
-                {(bank.slug === 'psb-opening') && (
-                  <div class="mt-1">
-                    <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full">Открытие счёта</span>
-                  </div>
-                )}
+                   <div class="mt-1">
+                     <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + счёт</span>
+                   </div>
+                 )}
+                 {(bank.slug === 'psb-opening') && (
+                   <div class="mt-1">
+                     <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full">Открытие счёта</span>
+                   </div>
+                 )}
 
-               </div>
+                </div>
             </div>
           </td>
           <td class="py-4 px-6">
@@ -95,18 +95,18 @@ const { banks = banksData.banks } = Astro.props;
             {bank.name.charAt(0)}
           </div>
 <div>
-             <div class="font-bold text-gray-900">{bank.name}</div>
-             <div class="text-sm text-gray-500">{bank.bestFor}</div>
+              <div class="font-bold text-gray-900">{bank.name}</div>
+              <div class="text-sm text-gray-500">{bank.subtitle}</div>
 {(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
-                <div class="mt-1">
-                  <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + счёт</span>
-                </div>
-              )}
-              {(bank.slug === 'psb-opening') && (
-                <div class="mt-1">
-                  <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full">Открытие счёта</span>
-                </div>
-              )}
+                 <div class="mt-1">
+                   <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + счёт</span>
+                 </div>
+               )}
+               {(bank.slug === 'psb-opening') && (
+                 <div class="mt-1">
+                   <span class="inline-block bg-gray-100 text-gray-800 text-xs font-semibold px-2 py-0.5 rounded-full">Открытие счёта</span>
+                 </div>
+               )}
            </div>
         </div>
 
