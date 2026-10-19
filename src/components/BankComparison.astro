@@ -30,15 +30,20 @@ const { banks = banksData.banks } = Astro.props;
               <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg">
                 {bank.name.charAt(0)}
               </div>
-              <div>
-                <div class="font-bold text-gray-900">{bank.name}</div>
-                <div class="text-sm text-gray-500">{bank.bestFor}</div>
-                <div class="flex items-center gap-1 mt-1">
-                  <span class="text-yellow-500">★</span>
-                  <span class="font-medium text-gray-700">{bank.rating}</span>
-                  <span class="text-gray-400 text-sm">({bank.reviewCount})</span>
-                </div>
-              </div>
+<div>
+                 <div class="font-bold text-gray-900">{bank.name}</div>
+                 <div class="text-sm text-gray-500">{bank.bestFor}</div>
+                 {(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
+                   <div class="mt-1">
+                     <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + РКО</span>
+                   </div>
+                 )}
+                 <div class="flex items-center gap-1 mt-1">
+                   <span class="text-yellow-500">★</span>
+                   <span class="font-medium text-gray-700">{bank.rating > 0 ? bank.rating : '—'}</span>
+                   <span class="text-gray-400 text-sm">({bank.reviewCount > 0 ? bank.reviewCount : '—'})</span>
+                 </div>
+               </div>
             </div>
           </td>
           <td class="py-4 px-6">
@@ -93,15 +98,20 @@ const { banks = banksData.banks } = Astro.props;
           <div class="w-10 h-10 bg-blue-100 text-blue-700 rounded-xl flex items-center justify-center font-bold text-lg">
             {bank.name.charAt(0)}
           </div>
-          <div>
-            <div class="font-bold text-gray-900">{bank.name}</div>
-            <div class="text-sm text-gray-500">{bank.bestFor}</div>
-          </div>
+<div>
+             <div class="font-bold text-gray-900">{bank.name}</div>
+             <div class="text-sm text-gray-500">{bank.bestFor}</div>
+             {(bank.slug === 'alfa-regbiz' || bank.slug === 'vtb-regbiz') && (
+               <div class="mt-1">
+                 <span class="inline-block bg-blue-100 text-blue-800 text-xs font-semibold px-2 py-0.5 rounded-full">Регистрация + РКО</span>
+               </div>
+             )}
+           </div>
         </div>
-        <div class="text-right">
-          <div class="text-gray-900 font-bold">{bank.rating}</div>
-          <div class="text-xs text-gray-500">{bank.reviewCount} отзывов</div>
-        </div>
+<div class="text-right">
+           <div class="text-gray-900 font-bold">{bank.rating > 0 ? bank.rating : '—'}</div>
+           <div class="text-xs text-gray-500">{bank.reviewCount > 0 ? bank.reviewCount + ' отзывов' : '—'}</div>
+         </div>
       </div>
 
       <div class="grid grid-cols-2 gap-3 sm:gap-4 mb-4 sm:mb-6">
