@@ -1,0 +1,33 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "model": "polza/deepseek/deepseek-v3.2-exp",
+  "provider": {
+    "polza": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Polza.ai",
+      "options": {
+        "baseURL": "https://polza.ai/api/v1",
+        "apiKey": "pza_1uy7M4o8JHCgqq5BnuPJZMZaCY_cyW3C"
+      },
+      "models": {
+        "deepseek/deepseek-v3.2-exp": { "name": "DeepSeek V3.2 Exp" },
+        "openai/gpt-6-luna-pro": { "name": "GPT-6 Luna Pro" },
+        "openai/gpt-oss-120b": { "name": "GPT-OSS 120B" }
+      }
+    }
+  },
+  "permission": {
+    "edit": "allow",
+    "bash": "allow",
+    "read": "allow",
+    "external_directory": "ask"
+  },
+  "agent": {
+    "build": {
+      "permission": {
+        "edit": "allow",
+        "bash": "allow"
+      }
+    }
+  }
+}
