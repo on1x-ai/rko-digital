@@ -27,13 +27,21 @@ const sizeClasses = {
 const widthClass = fullWidth ? 'w-full' : '';
 
 const className = `${baseClasses} ${variantClasses[variant]} ${sizeClasses[size]} ${widthClass}`;
+
+// Определяем, является ли ссылка внутренней
+const isInternalLink = href.startsWith('/') || href.startsWith('#');
+const linkProps = isInternalLink 
+  ? {} 
+  : { 
+      rel: 'nofollow sponsored noopener noreferrer',
+      target: '_blank' 
+    };
 ---
 
 <a
   href={href}
   class={className}
-  rel="nofollow sponsored noopener"
-  target="_blank"
+  {...linkProps}
   data-erid=""
   data-goal="cta-click"
 >

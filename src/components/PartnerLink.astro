@@ -5,13 +5,21 @@ export interface Props {
 }
 
 const { href, children } = Astro.props;
+
+// Определяем, является ли ссылка внутренней
+const isInternalLink = href.startsWith('/') || href.startsWith('#');
+const linkProps = isInternalLink 
+  ? {} 
+  : { 
+      rel: 'nofollow sponsored noopener noreferrer',
+      target: '_blank' 
+    };
 ---
 
 <a
   href={href}
   class="text-[var(--accent-primary)] underline hover:text-[var(--accent-hover)] transition-colors"
-  rel="nofollow sponsored noopener"
-  target="_blank"
+  {...linkProps}
   data-erid=""
 >
   {children}

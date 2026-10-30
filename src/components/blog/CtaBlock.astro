@@ -4,32 +4,46 @@ import CTAButton from '../CTAButton.astro';
 export interface Props {
   title?: string;
   text?: string;
+  description?: string;
   primaryLabel?: string;
   primaryHref?: string;
+  primaryButton?: { text: string; url: string };
   secondaryLabel?: string;
   secondaryHref?: string;
+  secondaryButton?: { text: string; url: string };
 }
 
 const {
   title = 'Нужна помощь с выбором?',
-  text = 'Оставьте заявку, и мы бесплатно подберём для вас расчётный счёт с эквайрингом и валютным контролем.',
+  text = '',
+  description = 'Оставьте заявку, и мы бесплатно подберём для вас расчётный счёт с эквайрингом и валютным контролем.',
   primaryLabel = 'Подобрать банк',
   primaryHref = '/comparison',
+  primaryButton,
   secondaryLabel,
   secondaryHref = '/#consult',
+  secondaryButton,
 } = Astro.props;
+
+// Поддержка старого API (primaryButton/secondaryButton)
+const finalTitle = title;
+const finalText = text || description;
+const finalPrimaryLabel = primaryButton?.text || primaryLabel;
+const finalPrimaryHref = primaryButton?.url || primaryHref;
+const finalSecondaryLabel = secondaryButton?.text || secondaryLabel;
+const finalSecondaryHref = secondaryButton?.url || secondaryHref;
 ---
 
 <div class="my-12 bg-gradient-to-r from-blue-50 to-indigo-50 rounded-2xl p-8 md:p-10 text-center">
-  <h3 class="text-3xl font-bold text-gray-900 mb-4">{title}</h3>
-  {text && <p class="text-gray-700 mb-8 max-w-2xl mx-auto">{text}</p>}
+  <h3 class="text-3xl font-bold text-gray-900 mb-4">{finalTitle}</h3>
+  {finalText && <p class="text-gray-700 mb-8 max-w-2xl mx-auto">{finalText}</p>}
   <div class="flex flex-col sm:flex-row gap-4 justify-center">
-    <CTAButton href={primaryHref} variant="primary" size="lg">
-      {primaryLabel}
+    <CTAButton href={finalPrimaryHref} variant="primary" size="lg">
+      {finalPrimaryLabel}
     </CTAButton>
-    {secondaryLabel && (
-      <CTAButton href={secondaryHref} variant="outline" size="lg">
-        {secondaryLabel}
+    {finalSecondaryLabel && (
+      <CTAButton href={finalSecondaryHref} variant="outline" size="lg">
+        {finalSecondaryLabel}
       </CTAButton>
     )}
   </div>
